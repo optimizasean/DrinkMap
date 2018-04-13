@@ -33,6 +33,7 @@ public class DatabaseConnector {
 
     //SQL Query method
     public ResultSet databaseQuery() {
+        //Finish this, figure out other ones...
         return null;
     }
 }
