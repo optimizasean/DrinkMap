@@ -1,17 +1,17 @@
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE INGREDIENT_TYPE(
+CREATE TABLE INGREDIENT_TYPE (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	CATEGORY VARCHAR(20) NOT NULL,
 		CONSTRAINT PK_INGREDIENT_TYPE PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE BRAND(
+CREATE TABLE BRAND (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	NAME VARCHAR(50),
 		CONSTRAINT PK_BRAND PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE INGREDIENT(
+CREATE TABLE INGREDIENT (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	NAME VARCHAR(30),
 	ABV DECIMAL(3,2) NOT NULL,
@@ -23,14 +23,14 @@ CREATE TABLE INGREDIENT(
 		CONSTRAINT FK_INGREDIENT_BRAND_ID FOREIGN KEY(BRAND_ID) REFERENCES BRAND(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE GLASSWARE(
+CREATE TABLE GLASSWARE (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	NAME VARCHAR(30),
 	DESCRIPTION TEXT,
 		CONSTRAINT PK_GLASSWARE PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE MIXED_DRINK(
+CREATE TABLE MIXED_DRINK (
 	ID INT NOT NULL UNIQUE,
 	NAME VARCHAR(20),
 	INSTRUCTIONS TEXT,
@@ -39,10 +39,11 @@ CREATE TABLE MIXED_DRINK(
 		CONSTRAINT FK_MIXED_DRINK_GLASS_ID FOREIGN KEY(GLASS_ID) REFERENCES GLASSWARE(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE INGREDIENT_MIX(
+CREATE TABLE INGREDIENT_MIX (
 	ID INT NOT NULL UNIQUE,
 	INGREDIENT_ID INT NOT NULL DEFAULT(0),
 	MIXED_DRINK_ID INT NOT NULL DEFAULT(0),
+	UNIT VARCHAR(10) DEFAULT(NULL),
 	RATIO INT NOT NULL DEFAULT(0),
 		CONSTRAINT PK_INGREDIENT_MIX PRIMARY KEY(ID),
 		CONSTRAINT CHK_INGREDIENT_MIX CHECK(RATIO >= 0),
@@ -50,13 +51,13 @@ CREATE TABLE INGREDIENT_MIX(
 		CONSTRAINT FK_INGREDIENT_MIX_MIXED_DRINK_ID FOREIGN KEY(MIXED_DRINK_ID) REFERENCES MIXED_DRINK(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE GARNISH(
+CREATE TABLE GARNISH (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	TYPE VARCHAR(30),
 		CONSTRAINT PK_GARNISH PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE GARNISH_MIX(
+CREATE TABLE GARNISH_MIX (
 	ID INT NOT NULL UNIQUE,
 	GARNISH_ID INT NOT NULL DEFAULT(0),
 	MIXED_DRINK_ID INT NOT NULL DEFAULT(0),
@@ -66,7 +67,7 @@ CREATE TABLE GARNISH_MIX(
 		CONSTRAINT FK_GARNISH_MIX_MIXED_DRINK_ID FOREIGN KEY(MIXED_DRINK_ID) REFERENCES MIXED_DRINK(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE LOCATION(
+CREATE TABLE LOCATION (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	NAME VARCHAR(30),
 	DESCRIPTION TEXT,
@@ -80,7 +81,7 @@ CREATE TABLE LOCATION(
 		CONSTRAINT CHK_LOCATION_ZIPCODE CHECK(ZIPCODE BETWEEN 0 AND 99999)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE REVIEW_DRINK(
+CREATE TABLE REVIEW_DRINK (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	RATING INT NOT NULL DEFAULT(3),
 	MIXED_DRINK_ID INT NOT NULL DEFAULT(0),
@@ -89,7 +90,7 @@ CREATE TABLE REVIEW_DRINK(
 		CONSTRAINT FK_REVIEW_DRINK_MIXED_DRINK_ID FOREIGN KEY(MIXED_DRINK_ID) REFERENCES MIXED_DRINK(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE REVIEW_LOCATION(
+CREATE TABLE REVIEW_LOCATION (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	RATING INT NOT NULL DEFAULT(3),
 	LOCATION_ID INT NOT NULL DEFAULT(0),
