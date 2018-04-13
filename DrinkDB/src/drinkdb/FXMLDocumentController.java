@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package drinkdb;
  
 import java.net.URL;
@@ -19,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  *
- * @author Lorraine Jimenez
+ * @author Lorraine Jimenez, Sean Harding
  */
 public class FXMLDocumentController implements Initializable {
     
@@ -51,8 +46,5 @@ public class FXMLDocumentController implements Initializable {
     private Tab tabTop1;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    public void initialize(URL url, ResourceBundle rb) {}
 }
