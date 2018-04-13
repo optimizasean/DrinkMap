@@ -26,7 +26,10 @@ public class DatabaseConnector {
             String schema = connection.getSchema();
             System.out.println("Successful connection - Schema: " + schema);
         } catch (SQLException sqle) {
+<<<<<<< HEAD
             //Should we break the system or something?
+=======
+>>>>>>> SQL-Connection
             sqle.printStackTrace();
             System.err.println("CONNECTION FAILED");
         }
