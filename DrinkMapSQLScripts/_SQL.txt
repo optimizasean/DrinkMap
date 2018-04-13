@@ -1,0 +1,1 @@
+These folders contain the SQL statements used to set up our DrinkMap database in the Azure SQL cloud and other relevant information which will help us manage and fill and search our database.

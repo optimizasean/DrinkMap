@@ -1,0 +1,1 @@
+This folder contains views which we will define to use for our search methods in our application to get the data from our database.

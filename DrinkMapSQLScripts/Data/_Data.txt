@@ -1,0 +1,9 @@
+This folder contains the Insert Statements for putting data into the DrinkMap database.
+
+Data Insert Order:
+XX
+X
+X
+X
+X
+X
