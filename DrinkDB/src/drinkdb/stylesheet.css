@@ -5,15 +5,7 @@
     -fx-background-radius: 30px;
     -fx-font-family: "Arial";
     -fx-font-weight: bold;
-}
-
-
-.button:hover {
-    -fx-background-color: black;
-}
-
-.button:selected {
-
+    
 }
 
 /* TABBBBBB
@@ -22,8 +14,8 @@
 .tab *.tab-label {
     -fx-rotate: 90;
     -fx-font-family: "Champagne & Limousines";
-    -fx-font-size: 26;
     -fx-text-fill: white;
+    -fx-font-size:26;
 
 }
 
@@ -37,13 +29,18 @@
       -fx-tab-max-width:75px;
       -fx-tab-min-height:225px;
       -fx-tab-max-height:225px;
-
 }
 
 .tab {
     -fx-background-color: #151515;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
 .tab:selected{
+    -fx-background-color: linear-gradient(to top, #5c2a45, #151515 75%);
+}
+
+.tab:hover{
     -fx-background-color: linear-gradient(to top, #5c2a45, #151515 75%);
 }

@@ -17,8 +17,6 @@
                   <Image url="@resources/top.png" />
                </image>
             </ImageView>
-            <Button fx:id="bttnClose" layoutX="969.0" layoutY="18.0" mnemonicParsing="false" text="x" textAlignment="CENTER" />
-            <Button fx:id="bttnAbt" layoutX="929.0" layoutY="18.0" mnemonicParsing="false" text="?" textAlignment="CENTER" />
             <ImageView layoutX="34.0" layoutY="6.0">
                <image>
                   <Image url="@resources/logo.png" />

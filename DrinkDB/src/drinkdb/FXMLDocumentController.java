@@ -16,6 +16,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  *
@@ -25,10 +26,6 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private AnchorPane layoutPane;
-    @FXML
-    private Button bttnClose;
-    @FXML
-    private Button bttnAbt;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -54,5 +51,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+   
     
 }
