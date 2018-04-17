@@ -1,4 +1,5 @@
 ------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO GARNISH(TYPE) VALUES('N/A');
 INSERT INTO GARNISH(TYPE) VALUES('Lemon');
 INSERT INTO GARNISH(TYPE) VALUES('Cherry');
 INSERT INTO GARNISH(TYPE) VALUES('Ice');

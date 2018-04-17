@@ -1,0 +1,1 @@
+This folder contains the select statements we will preset using views, joins, and more which will be defined in our application to gain data from DrinkMap.

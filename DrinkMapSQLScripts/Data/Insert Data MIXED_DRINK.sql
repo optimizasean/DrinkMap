@@ -1,7 +1,13 @@
 ------------------------------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Adios Mother Fucker (A.M.F)', 'Pour the vodka, gin, rum, and triple sec into a glass with ice. Fill with sweet and sour and add the float of Blue Curacao.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Highball Glass');
 INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Alexander', 'Shake and strain into a chilled cocktail glass.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Cocktail Glass'));
 INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Americano', 'Mix the ingredients directly in an old-fashioned glass filled with ice-cubes, and add a splash of soda water.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Old Fashioned Glass'));
+=======
+INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Adios Mother Fucker (A.M.F)', 'Pour the vodka, gin, rum, and triple sec into a glass with ice. Fill with sweet and sour and add the float of Blue Curacao. Garnish with a lemon slice and a cherry.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Highball Glass'));
+INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Alexander', 'Shake and strain into a chilled cocktail glass. Sprinkle with fresh ground nutmeg', (SELECT ID FROM GLASSWARE WHERE NAME = 'Cocktail Glass'));
+INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Americano', 'Mix the ingredients directly in an old-fashioned glass filled with ice-cubes, add a splash of soda water and garnish with half orange slice.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Old Fashioned Glass'));
+>>>>>>> SQL-Connection
 INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Angel Face', 'Pour all ingredients into a shaker with ice and shake. Strain into a cocktail glass.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Cocktail Glass'));
 INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('Aviation', 'Pour all ingredients into a shaker with ice and shake. Strain into a cocktail glass.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Cocktail Glass'));
 INSERT INTO MIXED_DRINK(NAME, INSTRUCTIONS, GLASS_ID) VALUES('B52', 'Layer ingredients one at a time starting with Kahlúa, followed by Baileys Irish Cream and top with Grand Marnier. Serve with a straw.', (SELECT ID FROM GLASSWARE WHERE NAME = 'Shot Glass'));
