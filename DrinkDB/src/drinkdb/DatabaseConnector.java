@@ -17,14 +17,14 @@ public class DatabaseConnector {
     private String dbName = "DrinkMap";
     private String user = "Application";
     private String password = "s5#d(V)2`c Ldj2#9!~";
-    private String encrypt = "true";
+    private String encrypt = "false";
     private String hostNameInCertificate = "*.database.windows.net";
     private String loginTimeout = "30";
     private String url = String.format("jdbc:sqlserver://%s:%s;database=%s;user=%s;password=%s;encrypt=%s;hostNameInCertificate=%s;loginTimeout=%s;",
         hostName, port, dbName, user, password, encrypt, hostNameInCertificate, loginTimeout);
     private Connection conn = null;
     //Statement statement = null; << Attempt to globalize
-
+    
     //Default Constructor
     public DatabaseConnector() {
         try {
@@ -53,7 +53,9 @@ public class DatabaseConnector {
     }
     public disconnect() {
         //statement = null; << for globalize
-        conn.close();
+        try {
+            conn.close();
+        } catch (SQLException sqle) {}
         conn = null;
     }
 
@@ -62,7 +64,7 @@ public class DatabaseConnector {
         //Finish this, figure out other ones...
         ResultSet result = null;
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = conn.createStatement();
             result = statement.executeQuery(query);
         } catch (SQLException sqle) {
             sqle.printStackTrace();
