@@ -16,8 +16,8 @@ public class DatabaseConnector {
 	private final String hostName = "drinkmap.database.windows.net";
     private final String port = "1433";
     private final String dbName = "DrinkMap";
-    private final String user = "Shadowbomb@DrinkMap";
-    private final String password = "Administrator2545";//"s5#d(V)2`c Ldj2#9!~";
+    private final String user = "Application@DrinkMap";
+    private final String password = "s5#d(V)2`c Ldj2#9!~";
     private final String encrypt = "true";
     private final String trustServerCertificate = "false";
     private final String hostNameInCertificate = "*.database.windows.net";
