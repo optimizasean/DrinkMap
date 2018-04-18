@@ -1,6 +1,7 @@
 This folder contains the Insert Statements for putting data into the DrinkMap database.
 
 Data Insert Order:
+0 -> SPECIAL INSERTS FIRST -> IDENTITY_INSERT
 1 -> INGREDIENT_TYPE
 2 -> BRAND
 3 -> INGREDIENT
