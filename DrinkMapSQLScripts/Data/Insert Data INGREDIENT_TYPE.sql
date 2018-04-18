@@ -1,5 +1,4 @@
 ------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO INGREDIENT_TYPE(ID, CATEGORY) VALUES(0, 'N\A');
 INSERT INTO INGREDIENT_TYPE(CATEGORY) VALUES('Vodka');
 INSERT INTO INGREDIENT_TYPE(CATEGORY) VALUES('Gin');
 INSERT INTO INGREDIENT_TYPE(CATEGORY) VALUES('Rum');

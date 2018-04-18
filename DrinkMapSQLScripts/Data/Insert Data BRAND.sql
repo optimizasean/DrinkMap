@@ -1,6 +1,4 @@
 ------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO BRAND(ID, NAME) VALUES(0, 'N/A');
-INSERT INTO BRAND(NAME) VALUES('N/A');
 INSERT INTO BRAND(NAME) VALUES('10 Cane');
 INSERT INTO BRAND(NAME) VALUES('1519 Tequila');
 INSERT INTO BRAND(NAME) VALUES('1800 Tequila');

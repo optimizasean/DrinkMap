@@ -31,7 +31,7 @@ CREATE TABLE GLASSWARE (
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE MIXED_DRINK (
-	ID INT NOT NULL UNIQUE,
+	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	NAME VARCHAR(20),
 	INSTRUCTIONS TEXT,
 	GLASS_ID INT NOT NULL DEFAULT(0),
@@ -40,11 +40,11 @@ CREATE TABLE MIXED_DRINK (
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE INGREDIENT_MIX (
-	ID INT NOT NULL UNIQUE,
+	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	INGREDIENT_ID INT NOT NULL DEFAULT(0),
 	MIXED_DRINK_ID INT NOT NULL DEFAULT(0),
-	UNIT VARCHAR(10) DEFAULT(NULL),
 	RATIO INT NOT NULL DEFAULT(0),
+	UNIT VARCHAR(10) DEFAULT(NULL),
 		CONSTRAINT PK_INGREDIENT_MIX PRIMARY KEY(ID),
 		CONSTRAINT CHK_INGREDIENT_MIX CHECK(RATIO >= 0),
 		CONSTRAINT FK_INGREDIENT_MIX_INGREDIENT_ID FOREIGN KEY(INGREDIENT_ID) REFERENCES INGREDIENT(ID),
@@ -58,7 +58,7 @@ CREATE TABLE GARNISH (
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE GARNISH_MIX (
-	ID INT NOT NULL UNIQUE,
+	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	GARNISH_ID INT NOT NULL DEFAULT(0),
 	MIXED_DRINK_ID INT NOT NULL DEFAULT(0),
 	MIXTURE VARCHAR(20),
