@@ -110,9 +110,4 @@ INSERT INTO LOCATION(NAME, DESCRIPTION, STREET_NUMBER, STREET_NAME, EXTRA, CITY,
 INSERT INTO LOCATION(NAME, DESCRIPTION, STREET_NUMBER, STREET_NAME, EXTRA, CITY, STATE, ZIPCODE) VALUES('Wang Chung''s Karaoke Bar', 'Snug & lively karaoke bar serving specialty cocktails in dark, cozy space outfitted in Asian decor.', '2424', 'Koa Avenue', NULL, 'Honolulu', 'HI', 96815);
 INSERT INTO LOCATION(NAME, DESCRIPTION, STREET_NUMBER, STREET_NAME, EXTRA, CITY, STATE, ZIPCODE) VALUES('Whiskey Dix Saloon', NULL, '99-16', 'Kamehameha Highway', NULL, 'Aiea', 'HI', 96701);
 INSERT INTO LOCATION(NAME, DESCRIPTION, STREET_NUMBER, STREET_NAME, EXTRA, CITY, STATE, ZIPCODE) VALUES('Xclusive Bar And Grille', NULL, '818', 'Sheridan Street', NULL, 'Honolulu', 'HI', 96814);
-<<<<<<< HEAD
 ------------------------------------------------------------------------------------------------------------------------------------------
-
-=======
-------------------------------------------------------------------------------------------------------------------------------------------
->>>>>>> SQL-Connection
