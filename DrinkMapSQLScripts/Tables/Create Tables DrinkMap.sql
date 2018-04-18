@@ -32,7 +32,7 @@ CREATE TABLE GLASSWARE (
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE MIXED_DRINK (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
-	NAME VARCHAR(20),
+	NAME VARCHAR(30),
 	INSTRUCTIONS TEXT,
 	GLASS_ID INT NOT NULL DEFAULT(0),
 		CONSTRAINT PK_MIXED_DRINK_ID PRIMARY KEY(ID),
