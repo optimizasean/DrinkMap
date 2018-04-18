@@ -101,15 +101,25 @@ INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID F
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Blackberry'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Russian Spring Punch'), 'Garnish with a lemon slice and a blackberry');
 ------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Lemon'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Rusty Nail'), 'Garnish with lemon twist.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Lemon'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Sazerac'), 'Add the lemon peel for garnish.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Orange'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Screwdriver'), 'Garnish with an orange slice.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Lime'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Sea Breeze'), 'Garnish with lime wedge.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Pineapple'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Sex on The Beach'), 'Garnish with fruit and berries.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Pineapple'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Singapore Sling'), 'Garnish with pineapple slice and cherry and serve with a straw.');
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Cherry'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Singapore Sling'), 'Garnish with pineapple slice and cherry and serve with a straw.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Orange'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Spritz Veneziano'), 'Garnish with half orange slice.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Cherry'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Tuxedo'), 'Garnish with a cocktail cherry and a lemon zest twist.');
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Lemon'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Tuxedo'), 'Garnish with a cocktail cherry and a lemon zest twist.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Lemon'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vesper'), 'Garnish with a thin slice of lemon peel.');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Orange'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Whiskey Sour'), 'Garnish with an orange slice and a cherry. ');
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT ID FROM GARNISH WHERE NAME = 'Cherry'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Whiskey Sour'), 'Garnish with an orange slice and a cherry. ');
+------------------------------------------------------------------------------------------------------------------------------------------
