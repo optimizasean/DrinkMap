@@ -1,13 +1,13 @@
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE INGREDIENT_TYPE (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
-	CATEGORY VARCHAR(20) NOT NULL,
+	CATEGORY VARCHAR(20) NOT NULL UNIQUE,
 		CONSTRAINT PK_INGREDIENT_TYPE PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE BRAND (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
-	NAME VARCHAR(50),
+	NAME VARCHAR(50) UNIQUE,
 		CONSTRAINT PK_BRAND PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
@@ -25,14 +25,14 @@ CREATE TABLE INGREDIENT (
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE GLASSWARE (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
-	NAME VARCHAR(30),
+	NAME VARCHAR(30) UNIQUE,
 	DESCRIPTION TEXT,
 		CONSTRAINT PK_GLASSWARE PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE MIXED_DRINK (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
-	NAME VARCHAR(30),
+	NAME VARCHAR(30) UNIQUE,
 	INSTRUCTIONS TEXT,
 	GLASS_ID INT NOT NULL DEFAULT(0),
 		CONSTRAINT PK_MIXED_DRINK_ID PRIMARY KEY(ID),
@@ -43,8 +43,8 @@ CREATE TABLE INGREDIENT_MIX (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	INGREDIENT_ID INT NOT NULL DEFAULT(0),
 	MIXED_DRINK_ID INT NOT NULL DEFAULT(0),
-	RATIO INT NOT NULL DEFAULT(0),
-	UNIT VARCHAR(10) DEFAULT(NULL),
+	RATIO DECIMAL(7,2) NOT NULL DEFAULT(0),
+	UNIT VARCHAR(25) DEFAULT(NULL),
 		CONSTRAINT PK_INGREDIENT_MIX PRIMARY KEY(ID),
 		CONSTRAINT CHK_INGREDIENT_MIX CHECK(RATIO >= 0),
 		CONSTRAINT FK_INGREDIENT_MIX_INGREDIENT_ID FOREIGN KEY(INGREDIENT_ID) REFERENCES INGREDIENT(ID),
@@ -53,7 +53,7 @@ CREATE TABLE INGREDIENT_MIX (
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE GARNISH (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
-	TYPE VARCHAR(30),
+	TYPE VARCHAR(30) UNIQUE,
 		CONSTRAINT PK_GARNISH PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
