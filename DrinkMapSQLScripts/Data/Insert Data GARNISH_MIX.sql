@@ -30,13 +30,13 @@ INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.
 ------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Lime')), (SELECT dbo.MIXED_DRINK_ID('Dark ''N'' Stormy')), 'Garnish with a lime wedge');
 ------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Mint leaf')), (SELECT dbo.MIXED_DRINK_ID('Derby')), 'Garnish with fresh mint leaves in the drink');
+INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Mint Leaf')), (SELECT dbo.MIXED_DRINK_ID('Derby')), 'Garnish with fresh mint leaves in the drink');
 ------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Green Olive')), (SELECT dbo.MIXED_DRINK_ID('Dirty Martini')), 'Garnish with green olive');
 ------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Olive')), (SELECT dbo.MIXED_DRINK_ID('Dry Martini')), 'Squeeze oil from lemon peel onto the drink, or garnish with olive.');
 ------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Coffee bean')), (SELECT dbo.MIXED_DRINK_ID('Espresso Martini')), 'Garnish with a couple of coffee beans for looks.');
+INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Coffee Bean')), (SELECT dbo.MIXED_DRINK_ID('Espresso Martini')), 'Garnish with a couple of coffee beans for looks.');
 ------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Orange')), (SELECT dbo.MIXED_DRINK_ID('Filur')), 'Garnish with a orange slice');
 ------------------------------------------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Straw')), (SELECT dbo.MIXED_DRINK_ID('Long Island Ice Tea')), 'Garnish with a lemon spiral and serve with a straw.');
 ------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Pineapple')), (SELECT dbo.MIXED_DRINK_ID('Mai Tai')), 'Garnish with pineapple spear, mint leaves and lime and serve with a straw.');
-INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Mint leaves')), (SELECT dbo.MIXED_DRINK_ID('Mai Tai')), 'Garnish with pineapple spear, mint leaves and lime and serve with a straw.');
+INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Mint Leaf')), (SELECT dbo.MIXED_DRINK_ID('Mai Tai')), 'Garnish with pineapple spear, mint leaves and lime and serve with a straw.');
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Lime')), (SELECT dbo.MIXED_DRINK_ID('Mai Tai')), 'Garnish with pineapple spear, mint leaves and lime and serve with a straw.');
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Straw')), (SELECT dbo.MIXED_DRINK_ID('Mai Tai')), 'Garnish with pineapple spear, mint leaves and lime and serve with a straw.');
 ------------------------------------------------------------------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Lime')), (SELECT dbo.MIXED_DRINK_ID('Polar Bear')), 'Garnish the drink with a lime slice and mint.');
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Mint')), (SELECT dbo.MIXED_DRINK_ID('Polar Bear')), 'Garnish the drink with a lime slice and mint.');
 ------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Passion fruit')), (SELECT dbo.MIXED_DRINK_ID('Porn Star Martini')), 'Garnish with passion fruit slices');
+INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Passion Fruit')), (SELECT dbo.MIXED_DRINK_ID('Porn Star Martini')), 'Garnish with passion fruit slices');
 ------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Lemon')), (SELECT dbo.MIXED_DRINK_ID('Russian Spring Punch')), 'Garnish with a lemon slice and a blackberry');
 INSERT INTO GARNISH_MIX(GARNISH_ID, MIXED_DRINK_ID, MIXTURE) VALUES((SELECT dbo.GARNISH_ID('Blackberry')), (SELECT dbo.MIXED_DRINK_ID('Russian Spring Punch')), 'Garnish with a lemon slice and a blackberry');
