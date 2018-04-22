@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------FIND GARNISH ID FROM NAME
-CREATE FUNCTION GARNISH_ID(@GARNISH_NAME VARCHAR(MAX))
+CREATE FUNCTION FUNCTION_GARNISH_ID(@GARNISH_NAME VARCHAR(MAX))
 RETURNS INT
 AS
 BEGIN
@@ -10,9 +10,10 @@ BEGIN
 		SET @ret = 0;
 	RETURN @ret;
 END;
+GO
 ------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------FIND MIXED_DRINK ID FROM NAME
-CREATE FUNCTION MIXED_DRINK_ID(@MIXED_DRINK_NAME VARCHAR(MAX))
+CREATE FUNCTION FUNCTION_MIXED_DRINK_ID(@MIXED_DRINK_NAME VARCHAR(MAX))
 RETURNS INT
 AS
 BEGIN
@@ -22,9 +23,10 @@ BEGIN
 		SET @ret = 0;
 	RETURN @ret;
 END;
+GO
 ------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------FIND INGREDIENT_TYPE ID FROM NAME
-CREATE FUNCTION INGREDIENT_TYPE_ID(@INGREDIENT_TYPE_CATEGORY VARCHAR(MAX))
+CREATE FUNCTION FUNCTION_INGREDIENT_TYPE_ID(@INGREDIENT_TYPE_CATEGORY VARCHAR(MAX))
 RETURNS INT
 AS
 BEGIN
@@ -34,9 +36,10 @@ BEGIN
 		SET @ret = 0;
 	RETURN @ret;
 END;
+GO
 ------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------FIND BRAND ID FROM NAME
-CREATE FUNCTION BRAND_ID(@BRAND_NAME VARCHAR(MAX))
+CREATE FUNCTION FUNCTION_BRAND_ID(@BRAND_NAME VARCHAR(MAX))
 RETURNS INT
 AS
 BEGIN
@@ -46,9 +49,10 @@ BEGIN
 		SET @ret = 0;
 	RETURN @ret;
 END;
+GO
 ------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------FIND INGREDIENT ID FROM NAME
-CREATE FUNCTION INGREDIENT_ID(@INGREDIENT_NAME VARCHAR(MAX))
+CREATE FUNCTION FUNCTION_INGREDIENT_ID(@INGREDIENT_NAME VARCHAR(MAX))
 RETURNS INT
 AS
 BEGIN
@@ -58,9 +62,10 @@ BEGIN
 		SET @ret = 0;
 	RETURN @ret;
 END;
+GO
 ------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------FIND GLASSWARE ID FROM NAME
-CREATE FUNCTION GLASSWARE_ID(@GLASSWARE_ID VARCHAR(MAX))
+CREATE FUNCTION FUNCTION_GLASSWARE_ID(@GLASSWARE_ID VARCHAR(MAX))
 RETURNS INT
 AS
 BEGIN
@@ -70,4 +75,5 @@ BEGIN
 		SET @ret = 0;
 	RETURN @ret;
 END;
+GO
 ------------------------------------------------------------------------------------------------------------------------------------------
