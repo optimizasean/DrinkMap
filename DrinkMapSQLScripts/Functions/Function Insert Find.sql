@@ -59,3 +59,15 @@ BEGIN
 	RETURN @ret;
 END;
 ------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------FIND GLASSWARE ID FROM NAME
+CREATE FUNCTION GLASSWARE_ID(@GLASSWARE_ID VARCHAR(MAX))
+RETURNS INT
+AS
+BEGIN
+	DECLARE @ret INT
+	SET @ret = (SELECT ID FROM GLASSWARE WHERE NAME = @GLASSWARE_ID);
+	IF (@ret IS NULL)
+		SET @ret = 0;
+	RETURN @ret;
+END;
+------------------------------------------------------------------------------------------------------------------------------------------
