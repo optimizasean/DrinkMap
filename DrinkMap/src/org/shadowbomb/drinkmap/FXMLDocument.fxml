@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shadowbomb.drinkmap.FXMLDocumentController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shadowbomb.drinkmap.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="layoutPane">
          <children>
-            <ImageView disable="true">
+            <ImageView layoutX="30.0">
                <image>
-                  <Image url="@org.shadowbomb.drinkmap.resources/top.png" />
+                  <Image url="@resources/logogo.png" />
                </image>
             </ImageView>
-            <ImageView layoutX="34.0" layoutY="6.0">
-               <image>
-                  <Image url="@org.shadowbomb.drinkmap.resources/logo.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="91.0" layoutY="5.0" text="THE DRINK DATABASE" textFill="WHITE">
-               <font>
-                  <Font name="Anders" size="36.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <TabPane fx:id="tabPane" prefHeight="760.0" prefWidth="1024.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
@@ -35,19 +35,19 @@
             <content>
               <AnchorPane>
                      <children>
-                        <Label fx:id="headerHome" layoutX="50.0" layoutY="35.0" text="WELCOME." textFill="WHITE">
+                        <Label fx:id="headerHome" layoutX="50.0" layoutY="35.0" text="WELCOME" textFill="WHITE">
                            <font>
-                              <Font name="Champagne &amp; Limousines Bold" size="51.0" />
+                              <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
-                        <Label fx:id="textHome" layoutX="55.0" layoutY="85.0" prefHeight="110.0" prefWidth="653.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id purus ultricies, interdum velit non, ultricies turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit." textFill="WHITE" wrapText="true">
+                        <Label fx:id="textHome" layoutX="55.0" layoutY="87.0" prefHeight="110.0" prefWidth="653.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id purus ultricies, interdum velit non, ultricies turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit." textFill="WHITE" wrapText="true">
                            <font>
-                              <Font name="Champagne &amp; Limousines" size="24.0" />
+                              <Font name="Arial" size="22.0" />
                            </font>
                         </Label>
                         <TextField fx:id="searchBox" layoutX="56.0" layoutY="198.0" prefHeight="34.0" prefWidth="661.0" promptText="search">
                            <font>
-                              <Font name="Champagne &amp; Limousines" size="20.0" />
+                              <Font name="Verdana" size="18.0" />
                            </font>
                         </TextField>
                      </children></AnchorPane>
@@ -55,7 +55,40 @@
           </Tab>
             <Tab fx:id="tabRand" closable="false" text="DRINK">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="221.0" layoutY="95.0" text="DRINK NAME" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="55.0" />
+                           </font>
+                        </Label>
+                        <Rating layoutX="311.0" layoutY="185.0" partialRating="true" rating="0.0" />
+                        <ImageView fitHeight="375.0" fitWidth="339.0" layoutX="92.0" layoutY="288.0" preserveRatio="true">
+                           <image>
+                              <Image url="@resources/images/martini.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="371.0" layoutY="285.0" text="INGREDIENTS" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="371.0" layoutY="475.0" text="INSTRUCTIONS" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="33.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="371.0" layoutY="335.0" text="- blah blah blah" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="26.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="371.0" layoutY="525.0" text="- blah blah blah" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="26.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
               </content>
             </Tab>
           <Tab fx:id="tabDrink" closable="false" text="INDEX">
@@ -64,12 +97,12 @@
                      <children>
                         <Label layoutX="50.0" layoutY="35.0" text="DRINKS" textFill="WHITE">
                            <font>
-                              <Font name="Champagne &amp; Limousines Bold" size="51.0" />
+                              <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
-                        <Label layoutX="55.0" layoutY="85.0" prefHeight="110.0" prefWidth="653.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id purus ultricies, interdum velit non, ultricies turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit." textFill="WHITE" wrapText="true">
+                        <Label layoutX="55.0" layoutY="87.0" prefHeight="110.0" prefWidth="653.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id purus ultricies, interdum velit non, ultricies turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit." textFill="WHITE" wrapText="true">
                            <font>
-                              <Font name="Champagne &amp; Limousines" size="24.0" />
+                              <Font name="Arial" size="22.0" />
                            </font>
                         </Label>
                         <Separator layoutX="55.0" layoutY="200.0" prefHeight="8.0" prefWidth="676.0" />
@@ -81,16 +114,16 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabIngr" closable="false" text="INGREDIENTS">
+            <Tab fx:id="tabIngr" closable="false" text="INGR.">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="50.0" layoutY="35.0" text="INGREDIENTS" textFill="WHITE">
                            <font>
-                              <Font name="Champagne &amp; Limousines Bold" size="51.0" />
+                              <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
-                        <Accordion layoutX="48.0" layoutY="101.0" prefHeight="622.0" prefWidth="687.0">
+                        <Accordion layoutX="48.0" layoutY="111.0" prefHeight="622.0" prefWidth="687.0">
                           <panes>
                             <TitledPane animated="false" prefHeight="513.0" prefWidth="743.0" text="DRINKS">
                               <content>
@@ -107,25 +140,25 @@
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="tabTop" closable="false" text="LOCATIONS">
+            <Tab fx:id="tabTop" closable="false" text="LOC.">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="50.0" layoutY="35.0" text="LOCATIONS" textFill="WHITE">
                            <font>
-                              <Font name="Champagne &amp; Limousines Bold" size="51.0" />
+                              <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="tabTop1" closable="false" text="TOP DRINKS">
+            <Tab fx:id="tabTop1" closable="false" text="TOP">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="50.0" layoutY="35.0" text="TOP-RATED DRINKS" textFill="WHITE">
                            <font>
-                              <Font name="Champagne &amp; Limousines Bold" size="51.0" />
+                              <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
                      </children>
