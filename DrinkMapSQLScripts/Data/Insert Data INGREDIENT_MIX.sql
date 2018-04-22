@@ -348,6 +348,15 @@ INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((S
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Maraschino'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Tuxedo'), 0.5, 'spoon');
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Orange bitters'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Tuxedo'), 3, 'dashes');
 ------------------------------------------------------------------------------------------------------------------------------------------
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Honey'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 1, 'tsp');
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Lime juice'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 1, 'cl');
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Onion'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 1, 'finely chopped');
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Orange juice'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 3, 'cl');
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Red hot chili pepper'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 2, 'thin slices');
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Tequila'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 5, 'cl');
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Tomato juice'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 7, 'cl');
+INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Worcestershire sauce'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 5, 'teaspoon');
+------------------------------------------------------------------------------------------------------------------------------------------
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Gin'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vesper'), 6, 'cl');
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Lillet Blonde'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vesper'), 0.75, 'cl');
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Vodka'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vesper'), 1.5, 'cl');
@@ -368,33 +377,4 @@ INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((S
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Lime juice'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Yellow bird'), 1.5, 'cl');
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Triple sec'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Yellow bird'), 1.5, 'cl');
 INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'White rum'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Yellow bird'), 3, 'cl');
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Tequila'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 5, 'cl');
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Tomato juice'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 7, 'cl');
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Orange juice'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 3, 'cl');
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Lime juice'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 1, 'cl');
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Honey'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 1, 'tsp');
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Onion'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 1, 'half slice, chopped');
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Red hot chili pepper'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 2, 'drops');
-INSERT INTO INGREDIENT_MIX(INGREDIENT_ID, MIXED_DRINK_ID, RATIO, UNIT) VALUES((SELECT ID FROM INGREDIENT WHERE NAME = 'Worcestershire sauce'), (SELECT ID FROM MIXED_DRINK WHERE NAME = 'Vampiro'), 5, 'drops');
 ------------------------------------------------------------------------------------------------------------------------------------------

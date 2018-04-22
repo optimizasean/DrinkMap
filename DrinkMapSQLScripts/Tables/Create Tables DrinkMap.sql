@@ -53,7 +53,7 @@ CREATE TABLE INGREDIENT_MIX (
 ------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE GARNISH (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
-	TYPE VARCHAR(30) UNIQUE,
+	NAME VARCHAR(30) UNIQUE,
 		CONSTRAINT PK_GARNISH PRIMARY KEY(ID)
 );
 ------------------------------------------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ CREATE TABLE GARNISH_MIX (
 	ID INT NOT NULL UNIQUE IDENTITY(1,1),
 	GARNISH_ID INT NOT NULL DEFAULT(0),
 	MIXED_DRINK_ID INT NOT NULL DEFAULT(0),
-	MIXTURE VARCHAR(20),
+	MIXTURE TEXT,
 		CONSTRAINT PK_GARNISH_MIX PRIMARY KEY(ID),
 		CONSTRAINT FK_GARNISH_MIX_GARNISH_ID FOREIGN KEY(ID) REFERENCES GARNISH(ID),
 		CONSTRAINT FK_GARNISH_MIX_MIXED_DRINK_ID FOREIGN KEY(MIXED_DRINK_ID) REFERENCES MIXED_DRINK(ID)

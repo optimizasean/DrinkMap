@@ -4,7 +4,7 @@ INSERT INTO BRAND(ID, NAME) VALUES(0, 'N/A');
 SET IDENTITY_INSERT [dbo].BRAND OFF;
 ------------------------------------------------------------------------------------------------------------------------------------------
 SET IDENTITY_INSERT [dbo].GARNISH ON;
-INSERT INTO GARNISH(ID, TYPE) VALUES(0, 'N/A');
+INSERT INTO GARNISH(ID, NAME) VALUES(0, 'N/A');
 SET IDENTITY_INSERT [dbo].GARNISH OFF;
 ------------------------------------------------------------------------------------------------------------------------------------------
 SET IDENTITY_INSERT [dbo].GLASSWARE ON;
