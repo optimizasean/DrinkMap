@@ -29,7 +29,11 @@ public class DatabaseConnector {
     private volatile transient boolean error = false;
     
 	//Driver SQLServerDriver = null;
-    //Statement stmt = null; << Attempt to globalize
+	//Statement stmt = null; << Attempt to globalize
+	
+	//Preset Functions
+	private final transient String SELECT_MIXED_DRINK = "SELECT * FROM dbo.SELECT_MIXED_DRINK";
+	private final transient String SEARCH_ALL = "SELECT * FROM dbo.SEARCH_ALL;";
 
     //Default Constructor
     public DatabaseConnector() {
@@ -109,8 +113,17 @@ public class DatabaseConnector {
     	return rs;
     }
     
-    //Special Queries:::
-    
+	//Special Queries:::
+	public ResultSet select_all_mixed_drink() {
+		ResultSet rs = null;
+    	rs = query(SEARCH_ALL);
+    	return rs;
+	}
+    public ResultSet select_mixed_drink(String mixed_drink) {
+		ResultSet rs = null;
+    	rs = query(SELECT_MIXED_DRINK + "('" + mixed_drink + "');");
+    	return rs;
+	}
     
 	/*public static void main(String[] args) {
 		DatabaseConnector dbc = new DatabaseConnector();
