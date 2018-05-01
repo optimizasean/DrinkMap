@@ -134,7 +134,7 @@ public class DatabaseConnector {
 
 	public ResultSet search_fulltext(String args, boolean MIXED_DRINK, boolean INGREDIENT, boolean BRAND) {
 		ResultSet rs = null;
-		String[] arr = args.split("\\.|,|\\s");
+		String[] arr = args.split(",|\\s");
 		
 		String param = "'";
 		for (int i = 0; i < arr.length; i++) {
@@ -163,18 +163,33 @@ public class DatabaseConnector {
 						+ "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
 				}
 			} else if (BRAND) {
-				search = null;
+				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
+							+ "OR" + " "
+						+ "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
 			} else {
 				search += "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
 			}
 		} else if (INGREDIENT) {
 			if (BRAND) {
-				search = null;
+				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
+							+ "OR" + " "
+						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ");";
 			} else {
-				search = null;
+				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ");";
 			}
 		} else if (BRAND) {
-			search = null;;
+			search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+						+ "WHERE CONTAINS(BRAND.Name, " + param + ");";
 		}
 		rs = query(search);
     	return rs;
