@@ -35,6 +35,8 @@ public class DatabaseConnector {
 	private final transient String SELECT_MIXED_DRINK = "SELECT * FROM dbo.SELECT_MIXED_DRINK";
 	private final transient String SEARCH_ALL = "SELECT * FROM dbo.SEARCH_ALL;";
 
+	private final transient String SEARCH_FULLTEXT = "SELECT MIXED_DRINK.NAME FROM MIXED_DRINK";
+
     //Default Constructor
     public DatabaseConnector() {
 		connect();
@@ -88,7 +90,9 @@ public class DatabaseConnector {
         try {
         	//Globalize that v
             Statement stmt = conn.createStatement();
-            result = stmt.executeQuery(query);
+			result = stmt.executeQuery(query);
+			stmt.close();
+			stmt = null;
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             System.err.println("SQL STATEMENT FAILED");
@@ -104,7 +108,9 @@ public class DatabaseConnector {
     		int indx = 0;
         	for (String query : multiQuery) {
         		rs[indx++] = stmt.executeQuery(query);
-        	}
+			}
+			stmt.close();
+			stmt = null;
     	} catch (SQLException sqle) {
     		sqle.printStackTrace();
     		System.err.println("MULTIQUERY FAILURE");
@@ -126,8 +132,52 @@ public class DatabaseConnector {
     	return rs;
 	}
 
-	public ResultSet find(String param) {
-		return null;
+	public ResultSet search_fulltext(String args, boolean MIXED_DRINK, boolean INGREDIENT, boolean BRAND) {
+		ResultSet rs = null;
+		String[] arr = args.split("\\.|,|\\s");
+		
+		String param = "'";
+		for (int i = 0; i < arr.length; i++) {
+			param += "\"" + arr[i] + "\"";
+			if (i != arr.length - 1) param += " OR ";
+			else param += "'";
+		}
+
+		String search = SEARCH_FULLTEXT;
+		if (MIXED_DRINK) {
+			if (INGREDIENT) {
+				if (BRAND) {
+					search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
+							+ "OR" + " "
+						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ")" + " "
+							+ "OR" + " "
+						+ "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
+				} else {
+					search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ")" + " "
+							+ "OR" + " "
+						+ "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
+				}
+			} else if (BRAND) {
+				search = null;
+			} else {
+				search += "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
+			}
+		} else if (INGREDIENT) {
+			if (BRAND) {
+				search = null;
+			} else {
+				search = null;
+			}
+		} else if (BRAND) {
+			search = null;;
+		}
+		rs = query(search);
+    	return rs;
 	}
     
 	/*public static void main(String[] args) {
