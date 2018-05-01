@@ -1,6 +1,5 @@
 package org.shadowbomb.drinkmap;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -125,6 +124,10 @@ public class DatabaseConnector {
 		ResultSet rs = null;
     	rs = query(SELECT_MIXED_DRINK + "('" + mixed_drink + "');");
     	return rs;
+	}
+
+	public ResultSet find(String param) {
+		return null;
 	}
     
 	/*public static void main(String[] args) {
