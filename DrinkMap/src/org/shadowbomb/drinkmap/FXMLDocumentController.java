@@ -156,8 +156,8 @@ public class FXMLDocumentController implements Initializable {
     		
     		// display
     		drinkName.setText(result.getString("MIXED_DRINK_NAME").toUpperCase());
-    		drinkIngr.appendText(result.getString("INGREDIENT_MIX_RATIO") +
-    							 " cl " +
+    		drinkIngr.appendText(result.getString("INGREDIENT_MIX_RATIO") + " " + 
+    							 result.getString("INGREDIENT_MIX_UNIT") + " " + 
     							 result.getString("INGREDIENT_NAME") + "\n");
         	drinkInstr.setText(result.getString("INSTRUCTIONS"));
         	 
