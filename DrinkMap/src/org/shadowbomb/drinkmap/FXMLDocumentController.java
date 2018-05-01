@@ -99,10 +99,10 @@ public class FXMLDocumentController implements Initializable {
     private Image marg, hurr, old, poco, coupe, wine, flute, mart, shot, coff,
     			  hi, coll, mug, none;
     
-    int n;
-    
+    String id = ""; // glass id;
     String drink = "";
     String path = "resources/";
+    String misc = ""; // kill me
     
     DatabaseConnector dbc = new DatabaseConnector();
     ResultSet result = null;
@@ -127,10 +127,6 @@ public class FXMLDocumentController implements Initializable {
     	mug = new Image(new File(path + "mug.png").toURI().toString());
     	none = new Image(new File(path + "none.png").toURI().toString());
     	
-    	System.out.println(poco.getHeight());
-    	System.out.println(coupe.getHeight());
-    	System.out.println(mug.getHeight());
-    	
     	// FUCK MY LIFE LOL
     	// display in index
     }
@@ -139,11 +135,13 @@ public class FXMLDocumentController implements Initializable {
     
 	// U G L Y -- you aint got no alibi, you ugly
     public void search(ActionEvent search) throws SQLException {
+    	drinkIngr.setText(""); // clear for every search lmao
+    	
     	// get text from textfield
     	drink = findSearch.getText();
     	
     	// shit about ResultSet
-    	result = dbc.query("select * from mixed_drink where name = '" + drink + "'");
+    	result = dbc.select_mixed_drink(drink);
     	
     	// S H I T
     	while(result.next()) {
@@ -157,32 +155,33 @@ public class FXMLDocumentController implements Initializable {
     		tabPane.getSelectionModel().select(tabDrink);
     		
     		// display
-    		drinkName.setText(result.getString("NAME").toUpperCase());
-    		//drinkIngr.setText(result.getString("INGREDIENTS"));
+    		drinkName.setText(result.getString("MIXED_DRINK_NAME").toUpperCase());
+    		drinkIngr.appendText(result.getString("INGREDIENT_MIX_RATIO") +
+    							 " cl " +
+    							 result.getString("INGREDIENT_NAME") + "\n");
         	drinkInstr.setText(result.getString("INSTRUCTIONS"));
         	 
-        	// L M A O THIS SHIT DON'T WORK
-        	n = result.getInt("GLASS_ID");
-        	System.out.println(n);
         	
-        	switch(n) { 
-    	        case 6:  drinkImg.setImage(coupe); break;
-    	        case 7:  drinkImg.setImage(poco);  break;
-    	        case 8:  drinkImg.setImage(mart);  break;
-    	        case 9:  drinkImg.setImage(coll);  break;
-    	        case 11: drinkImg.setImage(mug);   break;
-    	        case 13: drinkImg.setImage(flute); break;
-    	        case 16: drinkImg.setImage(hi);	   break;
-    	        case 17: drinkImg.setImage(hurr);  break;
-    	        case 18: drinkImg.setImage(coff);  break;
-    	        case 21: drinkImg.setImage(marg);  break;
-    	        case 22: drinkImg.setImage(mart);  break;
-    	        case 26: drinkImg.setImage(old);   break;
-    	        case 30: drinkImg.setImage(shot);  break;
-    	        case 40: drinkImg.setImage(wine);  break;
-    	        case 41: drinkImg.setImage(poco);  break;
+        	id = result.getString("GLASSWARE_NAME");
+        	switch(id) { 
+    	        case "Champagne Coupe Glass":  drinkImg.setImage(coupe); break;
+    	        case "Champagne Tulip Glass":  drinkImg.setImage(poco);  break;
+    	        case "Cocktail Glass":  drinkImg.setImage(mart);  break;
+    	        case "Collins Glass":  drinkImg.setImage(coll);  break;
+    	        case "Copper Mug": drinkImg.setImage(mug);   break;
+    	        case "Flute Glass": drinkImg.setImage(flute); break;
+    	        case "Highball Glass": drinkImg.setImage(hi);	   break;
+    	        case "Hurricane Glass": drinkImg.setImage(hurr);  break;
+    	        case "Irish Coffee Glass": drinkImg.setImage(coff);  break;
+    	        case "Margarita Glass": drinkImg.setImage(marg);  break;
+    	        case "Martini Glass": drinkImg.setImage(mart);  break;
+    	        case "Old Fashioned Glass": drinkImg.setImage(old);   break;
+    	        case "Shot glass": drinkImg.setImage(shot);  break;
+    	        case "White Wine Glass": drinkImg.setImage(wine);  break;
+    	        case "White Wine Tulip Glass": drinkImg.setImage(poco);  break;
     	        default: drinkImg.setImage(none);
         	}
+        	
     	}
     	
     }

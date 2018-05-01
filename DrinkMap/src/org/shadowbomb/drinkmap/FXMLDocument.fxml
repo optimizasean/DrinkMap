@@ -159,12 +159,12 @@
                               <Font name="Arial" size="22.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="drinkInstr" editable="false" layoutX="359.0" layoutY="436.0" prefHeight="161.0" prefWidth="362.0" promptText="help me" text="like for real" wrapText="true">
+                        <TextArea fx:id="drinkInstr" editable="false" layoutX="359.0" layoutY="436.0" prefHeight="161.0" prefWidth="362.0" promptText="kill me now" wrapText="true">
                            <font>
                               <Font name="Arial" size="22.0" />
                            </font>
                         </TextArea>
-                        <TextArea fx:id="drinkIngr" editable="false" layoutX="359.0" layoutY="209.0" prefHeight="161.0" prefWidth="362.0" promptText="help me" text="ya girl be dying" wrapText="true">
+                        <TextArea fx:id="drinkIngr" editable="false" layoutX="359.0" layoutY="209.0" prefHeight="161.0" prefWidth="362.0" promptText="help me" wrapText="true">
                            <font>
                               <Font name="Arial" size="22.0" />
                            </font>

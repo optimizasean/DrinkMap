@@ -1,5 +1,6 @@
 package org.shadowbomb.drinkmap;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -16,8 +17,8 @@ public class DatabaseConnector {
 	private final String hostName = "drinkmap.database.windows.net";
     private final String port = "1433";
     private final String dbName = "DrinkMap";
-    private final String user = "";
-    private final String password = "";
+    private final String user = "lorrainej";
+    private final String password = "somethingREALLY!!!hard";
     private final String encrypt = "true";
     private final String trustServerCertificate = "false";
     private final String hostNameInCertificate = "*.database.windows.net";
@@ -119,6 +120,7 @@ public class DatabaseConnector {
     	rs = query(SEARCH_ALL);
     	return rs;
 	}
+	
     public ResultSet select_mixed_drink(String mixed_drink) {
 		ResultSet rs = null;
     	rs = query(SELECT_MIXED_DRINK + "('" + mixed_drink + "');");
