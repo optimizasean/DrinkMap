@@ -2,14 +2,11 @@
 
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -67,27 +64,27 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="findCheckDrink" layoutX="191.0" layoutY="157.0" mnemonicParsing="false" onAction="#search" text="Cocktail" textFill="WHITE">
+                        <Label fx:id="findDisplay" layoutX="65.0" layoutY="211.0" prefHeight="505.0" prefWidth="662.0" textFill="WHITE" />
+                        <RadioButton layoutX="197.0" layoutY="158.0" mnemonicParsing="false" text="Cocktail" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
-                        </CheckBox>
-                        <CheckBox fx:id="findCheckIngr" layoutX="319.0" layoutY="158.0" mnemonicParsing="false" onAction="#search" text="Ingredient" textFill="WHITE">
+                        </RadioButton>
+                        <RadioButton layoutX="327.0" layoutY="158.0" mnemonicParsing="false" text="Ingredient" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
-                        </CheckBox>
-                        <CheckBox fx:id="findCheckBrand" layoutX="462.0" layoutY="158.0" mnemonicParsing="false" onAction="#search" text="Brand" textFill="WHITE">
+                        </RadioButton>
+                        <RadioButton layoutX="457.0" layoutY="158.0" mnemonicParsing="false" text="Brand" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
-                        </CheckBox>
-                        <CheckBox fx:id="findCheckGlass" layoutX="566.0" layoutY="158.0" mnemonicParsing="false" onAction="#search" text="Glassware" textFill="WHITE">
+                        </RadioButton>
+                        <TextArea fx:id="findRes" editable="false" layoutX="63.0" layoutY="216.0" prefHeight="512.0" prefWidth="664.0">
                            <font>
-                              <Font name="Arial" size="18.0" />
+                              <Font name="Arial" size="22.0" />
                            </font>
-                        </CheckBox>
-                        <Label fx:id="findDisplay" layoutX="65.0" layoutY="211.0" prefHeight="505.0" prefWidth="662.0" />
+                        </TextArea>
                      </children>
                   </AnchorPane>
               </content>
@@ -149,7 +146,7 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="drinkABV" layoutX="308.0" layoutY="115.0" prefHeight="26.0" prefWidth="101.0" text="ABV : " textFill="WHITE">
+                        <Label fx:id="drinkABV" layoutX="247.0" layoutY="115.0" prefHeight="26.0" prefWidth="162.0" text="ABV : " textFill="WHITE">
                            <font>
                               <Font name="Arial" size="22.0" />
                            </font>
@@ -159,14 +156,14 @@
                               <Font name="Arial" size="22.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="drinkInstr" editable="false" layoutX="359.0" layoutY="436.0" prefHeight="161.0" prefWidth="362.0" promptText="kill me now" wrapText="true">
+                        <TextArea fx:id="drinkInstr" editable="false" layoutX="359.0" layoutY="436.0" prefHeight="161.0" prefWidth="362.0" promptText="Instructions not found." wrapText="true">
                            <font>
-                              <Font name="Arial" size="22.0" />
+                              <Font name="Arial" size="18.0" />
                            </font>
                         </TextArea>
-                        <TextArea fx:id="drinkIngr" editable="false" layoutX="359.0" layoutY="209.0" prefHeight="161.0" prefWidth="362.0" promptText="help me" wrapText="true">
+                        <TextArea fx:id="drinkIngr" editable="false" layoutX="359.0" layoutY="209.0" prefHeight="161.0" prefWidth="362.0" promptText="Ingredients not found." wrapText="true">
                            <font>
-                              <Font name="Arial" size="22.0" />
+                              <Font name="Arial" size="18.0" />
                            </font>
                         </TextArea>
                      </children></AnchorPane>
@@ -187,11 +184,11 @@
                            </font>
                         </Label>
                         <Separator fx:id="indexDiv" layoutX="55.0" layoutY="200.0" prefHeight="8.0" prefWidth="676.0" />
-                        <TableView fx:id="indexTable" layoutX="55.0" layoutY="223.0" prefHeight="491.0" prefWidth="675.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                          </columns>
-                        </TableView>
+                        <TextArea fx:id="indexTable" layoutX="62.0" layoutY="233.0" prefHeight="467.0" prefWidth="669.0">
+                           <font>
+                              <Font name="Arial" size="22.0" />
+                           </font>
+                        </TextArea>
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -204,11 +201,11 @@
                               <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="locTable" layoutX="49.0" layoutY="106.0" prefHeight="608.0" prefWidth="703.0">
-                           <columns>
-                              <TableColumn prefWidth="75.0" text="C1" />
-                           </columns>
-                        </TableView>
+                        <TextArea fx:id="locTable" layoutX="55.0" layoutY="115.0" prefHeight="607.0" prefWidth="696.0">
+                           <font>
+                              <Font name="Arial" size="22.0" />
+                           </font>
+                        </TextArea>
                      </children></AnchorPane>
               </content>
             </Tab>

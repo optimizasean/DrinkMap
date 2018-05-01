@@ -91,8 +91,8 @@ public class DatabaseConnector {
         	//Globalize that v
             Statement stmt = conn.createStatement();
 			result = stmt.executeQuery(query);
-			stmt.close();
-			stmt = null;
+			//stmt.close();
+			//stmt = null;
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             System.err.println("SQL STATEMENT FAILED");
@@ -109,8 +109,8 @@ public class DatabaseConnector {
         	for (String query : multiQuery) {
         		rs[indx++] = stmt.executeQuery(query);
 			}
-			stmt.close();
-			stmt = null;
+			//stmt.close();
+			//stmt = null;
     	} catch (SQLException sqle) {
     		sqle.printStackTrace();
     		System.err.println("MULTIQUERY FAILURE");
