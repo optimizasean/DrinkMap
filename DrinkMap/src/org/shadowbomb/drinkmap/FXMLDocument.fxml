@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -11,21 +10,21 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shadowbomb.drinkmap.FXMLDocumentController">
+<VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shadowbomb.drinkmap.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="layoutPane">
          <children>
             <ImageView layoutX="30.0">
                <image>
-                  <Image url="@resources/logogo.png" />
+                  <Image url="@../../../../resources/logogo.png" />
                </image>
             </ImageView>
          </children>
@@ -46,117 +45,130 @@
                               <Font name="Arial" size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="homeSearch" layoutX="56.0" layoutY="198.0" prefHeight="37.0" prefWidth="667.0" promptText="search">
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="tabFind" text="FIND">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="findHeader" layoutX="62.0" layoutY="24.0" text="SEARCH" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="54.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="findSearch" layoutX="60.0" layoutY="100.0" onAction="#search" prefHeight="37.0" prefWidth="667.0" promptText="search">
                            <font>
                               <Font name="Arial" size="20.0" />
                            </font>
                         </TextField>
-                        <Label fx:id="homeLabelSort" layoutX="55.0" layoutY="248.0" prefHeight="29.0" prefWidth="135.0" text="SEARCH BY : " textFill="WHITE" wrapText="true">
+                        <Label fx:id="findLabelSearch" layoutX="65.0" layoutY="156.0" prefHeight="29.0" prefWidth="135.0" text="SEARCH BY : " textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="homeCheckDrink" layoutX="180.0" layoutY="250.0" mnemonicParsing="false" text="Cocktail" textFill="WHITE">
+                        <CheckBox fx:id="findCheckDrink" layoutX="191.0" layoutY="157.0" mnemonicParsing="false" onAction="#search" text="Cocktail" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="homeCheckIngr" layoutX="300.0" layoutY="250.0" mnemonicParsing="false" text="Ingredient" textFill="WHITE">
+                        <CheckBox fx:id="findCheckIngr" layoutX="319.0" layoutY="158.0" mnemonicParsing="false" onAction="#search" text="Ingredient" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="homeCheckBrand" layoutX="430.0" layoutY="250.0" mnemonicParsing="false" text="Brand" textFill="WHITE">
+                        <CheckBox fx:id="findCheckBrand" layoutX="462.0" layoutY="158.0" mnemonicParsing="false" onAction="#search" text="Brand" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="homeCheckGlass" layoutX="530.0" layoutY="250.0" mnemonicParsing="false" text="Glassware" textFill="WHITE">
+                        <CheckBox fx:id="findCheckGlass" layoutX="566.0" layoutY="158.0" mnemonicParsing="false" onAction="#search" text="Glassware" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </CheckBox>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
+                        <Label fx:id="findDisplay" layoutX="65.0" layoutY="211.0" prefHeight="505.0" prefWidth="662.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
             <Tab fx:id="tabDrink" closable="false" text="DRINK">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="drinkName" layoutX="221.0" layoutY="85.0" text="DRINK NAME" textAlignment="CENTER" textFill="WHITE">
+                        <Label fx:id="drinkName" alignment="CENTER" contentDisplay="CENTER" layoutX="46.0" layoutY="45.0" prefHeight="64.0" prefWidth="689.0" text="DRINK NAME" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="55.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="drinkImg" fitHeight="375.0" fitWidth="339.0" layoutX="92.0" layoutY="238.0" preserveRatio="true">
+                        <ImageView fx:id="drinkImg" fitHeight="375.0" fitWidth="236.0" layoutX="92.0" layoutY="198.0" preserveRatio="true">
                            <image>
-                              <Image url="@resources/images/martini.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="drinkLabelIngr" layoutX="371.0" layoutY="235.0" text="INGREDIENTS" textFill="WHITE">
+                              <Image url="@../../../../resources/none.png" />
+                           </image></ImageView>
+                        <Label fx:id="drinkLabelIngr" layoutX="371.0" layoutY="168.0" text="INGREDIENTS" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="33.0" />
                            </font>
                         </Label>
-                        <Label fx:id="drinkLabelInstr" layoutX="371.0" layoutY="416.0" text="INSTRUCTIONS" textFill="WHITE">
+                        <Label fx:id="drinkLabelInstr" layoutX="371.0" layoutY="386.0" text="INSTRUCTIONS" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="33.0" />
                            </font>
                         </Label>
-                        <Label fx:id="drinkIngr" layoutX="371.0" layoutY="285.0" text="- Ingredients go here" textFill="WHITE">
-                           <font>
-                              <Font name="Arial" size="22.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="drinkInstr" layoutX="371.0" layoutY="466.0" text="- Instructions go here" textFill="WHITE">
-                           <font>
-                              <Font name="Arial" size="22.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="drinkLabelRate" layoutX="341.0" layoutY="659.0" text="Rate this drink?" textFill="WHITE">
+                        <Label fx:id="drinkLabelRate" layoutX="341.0" layoutY="619.0" text="Rate this drink?" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <RadioButton fx:id="drinkRate1" contentDisplay="GRAPHIC_ONLY" layoutX="307.0" layoutY="691.0" mnemonicParsing="false" prefWidth="31.0" text="1" textFill="WHITE">
+                        <RadioButton fx:id="drinkRate1" contentDisplay="GRAPHIC_ONLY" layoutX="307.0" layoutY="651.0" mnemonicParsing="false" prefWidth="31.0" text="1" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font></RadioButton>
-                        <RadioButton fx:id="drinkRate2" contentDisplay="GRAPHIC_ONLY" layoutX="348.0" layoutY="691.0" mnemonicParsing="false" prefWidth="31.0" text="2" textFill="WHITE">
+                        <RadioButton fx:id="drinkRate2" contentDisplay="GRAPHIC_ONLY" layoutX="348.0" layoutY="651.0" mnemonicParsing="false" prefWidth="31.0" text="2" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="drinkRate3" contentDisplay="GRAPHIC_ONLY" layoutX="387.0" layoutY="691.0" mnemonicParsing="false" prefWidth="31.0" text="3" textFill="WHITE">
+                        <RadioButton fx:id="drinkRate3" contentDisplay="GRAPHIC_ONLY" layoutX="387.0" layoutY="651.0" mnemonicParsing="false" prefWidth="31.0" text="3" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="drinkRate4" contentDisplay="GRAPHIC_ONLY" layoutX="427.0" layoutY="691.0" mnemonicParsing="false" prefWidth="31.0" text="4" textFill="WHITE">
+                        <RadioButton fx:id="drinkRate4" contentDisplay="GRAPHIC_ONLY" layoutX="427.0" layoutY="651.0" mnemonicParsing="false" prefWidth="31.0" text="4" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="drinkRate5" contentDisplay="GRAPHIC_ONLY" layoutX="467.0" layoutY="691.0" mnemonicParsing="false" prefWidth="31.0" text="5" textFill="WHITE">
+                        <RadioButton fx:id="drinkRate5" contentDisplay="GRAPHIC_ONLY" layoutX="467.0" layoutY="651.0" mnemonicParsing="false" prefWidth="31.0" text="5" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </RadioButton>
-                        <Label fx:id="drinkLabelNums" layoutX="316.0" layoutY="723.0" prefHeight="21.0" prefWidth="177.0" text="1      2      3      4      5" textFill="WHITE">
+                        <Label fx:id="drinkLabelNums" layoutX="316.0" layoutY="683.0" prefHeight="21.0" prefWidth="177.0" text="1      2      3      4      5" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="drinkABV" layoutX="308.0" layoutY="155.0" prefHeight="26.0" prefWidth="101.0" text="ABV : " textFill="WHITE">
+                        <Label fx:id="drinkABV" layoutX="308.0" layoutY="115.0" prefHeight="26.0" prefWidth="101.0" text="ABV : " textFill="WHITE">
                            <font>
                               <Font name="Arial" size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="drinkRate" layoutX="418.0" layoutY="155.0" prefHeight="26.0" prefWidth="76.0" text="★ : " textFill="WHITE">
+                        <Label fx:id="drinkRate" layoutX="418.0" layoutY="115.0" prefHeight="26.0" prefWidth="76.0" text="★ : " textFill="WHITE">
                            <font>
                               <Font name="Arial" size="22.0" />
                            </font>
                         </Label>
+                        <TextArea fx:id="drinkInstr" editable="false" layoutX="359.0" layoutY="436.0" prefHeight="161.0" prefWidth="362.0" promptText="help me" text="like for real" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="22.0" />
+                           </font>
+                        </TextArea>
+                        <TextArea fx:id="drinkIngr" editable="false" layoutX="359.0" layoutY="209.0" prefHeight="161.0" prefWidth="362.0" promptText="help me" text="ya girl be dying" wrapText="true">
+                           <font>
+                              <Font name="Arial" size="22.0" />
+                           </font>
+                        </TextArea>
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -164,7 +176,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="indexheader" layoutX="50.0" layoutY="35.0" text="DRINKS" textFill="WHITE">
+                        <Label fx:id="indexHeader" layoutX="50.0" layoutY="35.0" text="DRINKS" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="54.0" />
                            </font>
@@ -183,32 +195,6 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabIngr" closable="false" text="INGR.">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="ingrHeader" layoutX="50.0" layoutY="35.0" text="INGREDIENTS" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="54.0" />
-                           </font>
-                        </Label>
-                        <Accordion layoutX="48.0" layoutY="111.0" prefHeight="622.0" prefWidth="687.0">
-                          <panes>
-                            <TitledPane animated="false" prefHeight="513.0" prefWidth="743.0" text="DRINKS">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </TitledPane>
-                            <TitledPane animated="false" text="GARNISHES">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </TitledPane>
-                          </panes>
-                        </Accordion>
-                     </children></AnchorPane>
-              </content>
-            </Tab>
             <Tab fx:id="tabLoc" closable="false" text="LOC.">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -218,16 +204,61 @@
                               <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
+                        <TableView fx:id="locTable" layoutX="49.0" layoutY="106.0" prefHeight="608.0" prefWidth="703.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="C1" />
+                           </columns>
+                        </TableView>
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="tabTop" closable="false" text="TOP">
+            <Tab fx:id="tabAbout" closable="false" text="ABOUT">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="topHeader" layoutX="50.0" layoutY="35.0" text="TOP-RATED DRINKS" textFill="WHITE">
+                        <Label fx:id="aboutHeader" layoutX="50.0" layoutY="35.0" text="ABOUT" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="54.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="aboutSean" layoutX="151.0" layoutY="244.0" text="SEAN" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="aboutLine" layoutX="159.0" layoutY="503.0" text="LINE" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="abtLorraine" layoutX="508.0" layoutY="243.0" text="LORRAINE" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="aboutMette" layoutX="537.0" layoutY="503.0" text="METTE" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="32.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="aboutSeanInfo" layoutX="68.0" layoutY="299.0" text="Vegetarian code monkey with&#10;a passion for memes and vidja" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="aboutLorraineInfo" layoutX="448.0" layoutY="299.0" text="Wannabe graphic designer who&#10;could use more sleep. Can't really&#10;code for shit. Also a lowkey&#10;alcoholic but whatever." textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="aboutLineInfo" layoutX="68.0" layoutY="559.0" text="My name is Line Kjær Andersen,&#10;I am 21 years old and from Denmark.&#10;I am currently majoring in economics&#10;and business administration, and I&#10;love to have a nice time with some&#10;nice drinks - especially the one called&#10;sex on the beach." textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="aboutMetteInfo" layoutX="448.0" layoutY="559.0" text="Freaky alcoholic" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="20.0" />
                            </font>
                         </Label>
                      </children>

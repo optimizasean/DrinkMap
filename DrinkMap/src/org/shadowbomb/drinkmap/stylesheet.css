@@ -1,11 +1,15 @@
-/* ANCHOR SHIT */
+/* WHY */
 .root {
     -fx-background-color: linear-gradient(to right, #21272e 50%, #546f8a);
 }
 
-/* TABBBBBB
- * aka why the fuck are the sizes weird
- */
+/* LMAOOOO KILL ME NOW */
+.text-area, .text-area .viewport, .text-area .content {
+    -fx-background-color: transparent ;
+    -fx-text-fill: white;
+}
+
+/* TABBBBBB */
 .tab *.tab-label {
     -fx-rotate: 90;
     -fx-font-family: "Arial";
@@ -16,6 +20,7 @@
 
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color: #252f3d;
+    -fx-text-alignment: center;
 }
 
 .tab-pane {
