@@ -108,10 +108,13 @@ public class FXMLDocumentController implements Initializable {
     String id = ""; 	 // glass id;
     String input = "";	 // for search query
     String misc = "";	 // i don't remember anymore lmao
+    String name = "";
    
     ArrayList<String> chk = new ArrayList<String>();
-    int ct;
-    double abv;
+    ToggleGroup rating = new ToggleGroup();
+    int ct, rt;
+    double abv, starr;
+    boolean rate = false;
     
     DecimalFormat df = new DecimalFormat("##.##");
     
@@ -119,8 +122,6 @@ public class FXMLDocumentController implements Initializable {
     ResultSet result = null;	 // general results
     ResultSet drinkIndex = null; // index result
     ResultSet locIndex = null;	 // location results
-    
-    boolean rate = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -151,7 +152,6 @@ public class FXMLDocumentController implements Initializable {
     	none = new Image(new File("resources/none.png").toURI().toString());
     	
     	// UGH
-    	ToggleGroup rating = new ToggleGroup();
     	drinkRate1.setToggleGroup(rating);
     	drinkRate2.setToggleGroup(rating);
     	drinkRate3.setToggleGroup(rating);
@@ -183,6 +183,7 @@ public class FXMLDocumentController implements Initializable {
     	chk.clear();
     	abv = 0;
     	ct = 0;
+    	rt = 0;
 
     	input = findSearchBar.getText(); 
 
@@ -208,7 +209,16 @@ public class FXMLDocumentController implements Initializable {
     	chk.clear();
     	abv = 0;
     	ct = 0;
+    	rt = 0;
+    	starr = 0;
     	
+    	// if something was previously rated, clear rating
+    	if(rating.getSelectedToggle() != null) {
+    		rating.getSelectedToggle().setSelected(false);
+    		rate = false;
+    	}
+    	
+
     	// get text from search field
     	input = findSearchBar.getText();
     	
@@ -236,7 +246,8 @@ public class FXMLDocumentController implements Initializable {
 	
 	    		// display name, ingredient, and instructions
 	    		// TODO : DISPLAY EACH INGREDIENTS FIRST, GARNISHES LAST
-	    		drinkName.setText(result.getString("MIXED_DRINK_NAME").toUpperCase());
+	    		name = result.getString("MIXED_DRINK_NAME");
+	    		drinkName.setText(name.toUpperCase());
 	    		
 	    		// fuckin lmao
 	    		if(!chk.contains(result.getString("INGREDIENT_NAME"))) {
@@ -286,14 +297,41 @@ public class FXMLDocumentController implements Initializable {
 	    	        case "White Wine Glass":		drinkImg.setImage(wine);  break;
 	    	        case "White Wine Tulip Glass":	drinkImg.setImage(poco);  break;
 	    	        default: 						drinkImg.setImage(none);
-	        	}
-	        	
-	    	}
-    	}
-    }
-     
+	        	} // END IMAGE SWITCH 
+	    	} // END WHILE
+	    	drinkRate.setText("★ : " + getRating(name));
+    	} // END ELSE
+
+    	
+    } // END DISPLAY METHOD
     
-    public void drinkReview(ActionEvent drink) {
+    public void drinkReview(ActionEvent drinkReview) throws SQLException {
+    	if(!rate) {
+			if		(drinkRate1.isSelected()) dbc.insert_query(1, name);
+			else if (drinkRate2.isSelected()) dbc.insert_query(2, name);
+			else if (drinkRate3.isSelected()) dbc.insert_query(3, name);
+			else if (drinkRate4.isSelected()) dbc.insert_query(4, name);
+			else 	dbc.insert_query(5, name);
+    	}
+
+    	rate = true;
+    }
+    
+    public double getRating(String drink) throws SQLException {
+    	ResultSet rs = null;
+    	rs = dbc.query("select rating from review_drink where mixed_drink_id " + 
+    				   "= (SELECT dbo.FUNCTION_MIXED_DRINK_ID('" + 
+    				   drink + "'))");
+    	double total = 0;
+    	double count = 0;
+    	
+    	while(rs.next()) {
+    		total += rs.getInt("RATING");
+    		count++;
+    	}
+    	
+    	if(total == 0) return 0;
+    	else 		   return total/count;
     	
     }
     

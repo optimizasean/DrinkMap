@@ -16,8 +16,10 @@ public class DatabaseConnector {
 	private final String hostName = "drinkmap.database.windows.net";
     private final String port = "1433";
     private final String dbName = "DrinkMap";
-    private final String user = "DrinkMap_Application_User@DrinkMap";
-    private final String password = "psw321$@pp";
+    //private final String user = "DrinkMap_Application_User@DrinkMap";
+    //private final String password = "psw321$@pp";
+    private final String user = "lorrainej";
+    private final String password = "somethingREALLY!!!hard";
     private final String encrypt = "true";
     private final String trustServerCertificate = "false";
     private final String hostNameInCertificate = "*.database.windows.net";
@@ -204,6 +206,14 @@ public class DatabaseConnector {
 		}
 		rs = query(search);
     	return rs;
+	}
+	
+	public void insert_query(int star, String name) throws SQLException {
+		Statement stmt = conn.createStatement();
+		String s = "insert into review_drink(rating, mixed_drink_id) values(" +
+					star + ", " + "(SELECT dbo.FUNCTION_MIXED_DRINK_ID('" +
+					name + "')))";
+		stmt.execute(s);
 	}
     
 	/*
