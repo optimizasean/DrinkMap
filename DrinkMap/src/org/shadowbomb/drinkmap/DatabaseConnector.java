@@ -16,8 +16,8 @@ public class DatabaseConnector {
 	private final String hostName = "drinkmap.database.windows.net";
     private final String port = "1433";
     private final String dbName = "DrinkMap";
-    private final String user = "lorrainej";
-    private final String password = "somethingREALLY!!!hard";
+    private final String user = "DrinkMap_Application_User@DrinkMap";
+    private final String password = "psw321$@pp";
     private final String encrypt = "true";
     private final String trustServerCertificate = "false";
     private final String hostNameInCertificate = "*.database.windows.net";
@@ -34,9 +34,11 @@ public class DatabaseConnector {
 	//Preset Functions
 	private final transient String SELECT_MIXED_DRINK = "SELECT * FROM dbo.SELECT_MIXED_DRINK";
 	private final transient String SEARCH_ALL = "SELECT * FROM dbo.SEARCH_ALL;";
+	private final transient String SEARCH_FULLTEXT = "SELECT MIXED_DRINK.NAME FROM MIXED_DRINK ";
+	
+	// BLAH
 
-	private final transient String SEARCH_FULLTEXT = "SELECT MIXED_DRINK.NAME FROM MIXED_DRINK";
-
+	
     //Default Constructor
     public DatabaseConnector() {
 		connect();
@@ -134,6 +136,7 @@ public class DatabaseConnector {
 
 	public ResultSet search_fulltext(String args, boolean MIXED_DRINK, boolean INGREDIENT, boolean BRAND) {
 		ResultSet rs = null;
+		
 		String[] arr = args.split(",|\\s");
 		
 		String param = "'";
@@ -142,8 +145,11 @@ public class DatabaseConnector {
 			if (i != arr.length - 1) param += " OR ";
 			else param += "'";
 		}
-
+		
 		String search = SEARCH_FULLTEXT;
+		System.out.println(param);
+
+		
 		if (MIXED_DRINK) {
 			if (INGREDIENT) {
 				if (BRAND) {
@@ -172,7 +178,9 @@ public class DatabaseConnector {
 			} else {
 				search += "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
 			}
-		} else if (INGREDIENT) {
+		}
+		
+		else if (INGREDIENT) {
 			if (BRAND) {
 				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
 							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
@@ -185,12 +193,16 @@ public class DatabaseConnector {
 							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ");";
 			}
-		} else if (BRAND) {
+		}
+		
+		else if (BRAND) {
 			search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
 							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ");";
 		}
+		
+		System.out.println(search); // search is not being updated!!!
 		rs = query(search);
     	return rs;
 	}

@@ -1,4 +1,4 @@
 --RAN IN MASTER
-CREATE LOGIN [Application] WITH PASSWORD = 's5#d(V)2`c Ldj2#9!~';
+CREATE LOGIN [DrinkMap_Application_User] WITH PASSWORD = 'psw321$@pp';
 --RAN IN DrinkMap
-CREATE USER Application for LOGIN [Application];
+CREATE USER DrinkMap_Application_User for LOGIN [DrinkMap_Application_User];
