@@ -137,6 +137,7 @@ public class DatabaseConnector {
 	public ResultSet search_fulltext(String args, boolean MIXED_DRINK, boolean INGREDIENT, boolean BRAND) {
 		ResultSet rs = null;
 		
+		args.replaceAll("'", "''");
 		String[] arr = args.split(",|\\s");
 		
 		String param = "'";
@@ -148,7 +149,6 @@ public class DatabaseConnector {
 		
 		String search = SEARCH_FULLTEXT;
 		System.out.println(param);
-
 		
 		if (MIXED_DRINK) {
 			if (INGREDIENT) {
@@ -203,7 +203,8 @@ public class DatabaseConnector {
     	return rs;
 	}
     
-	/*public static void main(String[] args) {
+	/*
+	public static void main(String[] args) {
 		DatabaseConnector dbc = new DatabaseConnector();
 		dbc.databaseQuery("select * from BRAND;");
 	}*/
