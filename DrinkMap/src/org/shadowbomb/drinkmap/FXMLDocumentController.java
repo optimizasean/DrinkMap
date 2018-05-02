@@ -5,7 +5,6 @@ import java.net.URL;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -17,10 +16,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -109,8 +107,8 @@ public class FXMLDocumentController implements Initializable {
     
     String id = ""; 	 // glass id;
     String input = "";	 // for search query
-    
-    String misc = "";
+    String misc = "";	 // i don't remember anymore lmao
+   
     ArrayList<String> chk = new ArrayList<String>();
     int ct;
     double abv;
@@ -121,6 +119,8 @@ public class FXMLDocumentController implements Initializable {
     ResultSet result = null;	 // general results
     ResultSet drinkIndex = null; // index result
     ResultSet locIndex = null;	 // location results
+    
+    boolean rate = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
@@ -150,6 +150,13 @@ public class FXMLDocumentController implements Initializable {
     	mug = new Image(new File("resources/mug.png").toURI().toString());
     	none = new Image(new File("resources/none.png").toURI().toString());
     	
+    	// UGH
+    	ToggleGroup rating = new ToggleGroup();
+    	drinkRate1.setToggleGroup(rating);
+    	drinkRate2.setToggleGroup(rating);
+    	drinkRate3.setToggleGroup(rating);
+    	drinkRate4.setToggleGroup(rating);
+    	drinkRate5.setToggleGroup(rating);
 
     }
    
@@ -169,7 +176,7 @@ public class FXMLDocumentController implements Initializable {
     
     
     // ISJGL;KDJFG;LKJSFLKJSDKL;FGJKOFLJG
-    public void display(ActionEvent display) throws SQLException {
+    public void search(ActionEvent search) throws SQLException {
     	drinkIngr.setText("");
     	drinkInstr.setText("");
     	findRes.setText("");
@@ -192,7 +199,7 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
-    /*
+    
  	// U G L Y -- you aint got no alibi, you ugly
     public void display(ActionEvent display) throws SQLException {
     	// reset these values after every search
@@ -283,7 +290,7 @@ public class FXMLDocumentController implements Initializable {
 	        	
 	    	}
     	}
-    }*/
+    }
      
     
     public void drinkReview(ActionEvent drink) {

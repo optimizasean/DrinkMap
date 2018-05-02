@@ -98,7 +98,7 @@ public class DatabaseConnector {
         try {
         	//Globalize that v
             Statement stmt = conn.createStatement();
-			result = stmt.executeQuery(process_String(query));
+			result = stmt.executeQuery(query);
 			//stmt.close();
 			//stmt = null;
         } catch (SQLException sqle) {
@@ -153,8 +153,6 @@ public class DatabaseConnector {
 		}
 		
 		String search = SEARCH_FULLTEXT;
-		System.out.println(param);
-		System.out.println(search);
 
 		
 		if (MIXED_DRINK) {
@@ -204,8 +202,6 @@ public class DatabaseConnector {
 							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ");";
 		}
-		
-		System.out.println(search); // search is not being updated!!!
 		rs = query(search);
     	return rs;
 	}
