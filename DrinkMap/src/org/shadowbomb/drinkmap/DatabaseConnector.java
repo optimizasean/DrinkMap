@@ -83,7 +83,13 @@ public class DatabaseConnector {
     
     public boolean connected() {
     	return !(conn == null);
-    }
+	}
+	
+	private String process_String(String args) {
+		String proc = args;
+		proc = proc.replaceAll("'", "''");
+		return proc;
+	}
     
     //SQL Query method for SQL testing
     public ResultSet query(String query) {
@@ -92,7 +98,7 @@ public class DatabaseConnector {
         try {
         	//Globalize that v
             Statement stmt = conn.createStatement();
-			result = stmt.executeQuery(query);
+			result = stmt.executeQuery(process_String(query));
 			//stmt.close();
 			//stmt = null;
         } catch (SQLException sqle) {
@@ -109,7 +115,7 @@ public class DatabaseConnector {
     		Statement stmt = conn.createStatement();
     		int indx = 0;
         	for (String query : multiQuery) {
-        		rs[indx++] = stmt.executeQuery(query);
+        		rs[indx++] = stmt.executeQuery(process_String(query));
 			}
 			//stmt.close();
 			//stmt = null;
@@ -130,15 +136,14 @@ public class DatabaseConnector {
 	
     public ResultSet select_mixed_drink(String mixed_drink) {
 		ResultSet rs = null;
-    	rs = query(SELECT_MIXED_DRINK + "('" + mixed_drink + "');");
+    	rs = query(SELECT_MIXED_DRINK + "('" + process_String(mixed_drink) + "');");
     	return rs;
 	}
 
 	public ResultSet search_fulltext(String args, boolean MIXED_DRINK, boolean INGREDIENT, boolean BRAND) {
 		ResultSet rs = null;
 		
-		args.replaceAll("'", "''");
-		String[] arr = args.split(",|\\s");
+		String[] arr = process_String(args).split(",|\\s");
 		
 		String param = "'";
 		for (int i = 0; i < arr.length; i++) {
