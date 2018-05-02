@@ -158,15 +158,15 @@ public class DatabaseConnector {
 							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
 							+ "OR" + " "
-						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ")" + " "
+						+ "CONTAINS(INGREDIENT.Name, " + param + ")" + " "
 							+ "OR" + " "
-						+ "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
+						+ "CONTAINS(MIXED_DRINK.Name, " + param + ");";
 				} else {
 					search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
 							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ")" + " "
 							+ "OR" + " "
-						+ "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
+						+ "CONTAINS(MIXED_DRINK.Name, " + param + ");";
 				}
 			} else if (BRAND) {
 				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
@@ -174,28 +174,24 @@ public class DatabaseConnector {
 							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
 							+ "OR" + " "
-						+ "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
+						+ "CONTAINS(MIXED_DRINK.Name, " + param + ");";
 			} else {
 				search += "WHERE CONTAINS(MIXED_DRINK.Name, " + param + ");";
 			}
-		}
-		
-		else if (INGREDIENT) {
+		} else if (INGREDIENT) {
 			if (BRAND) {
 				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
 							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
 							+ "OR" + " "
-						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ");";
+						+ "CONTAINS(INGREDIENT.Name, " + param + ");";
 			} else {
 				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
 							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ");";
 			}
-		}
-		
-		else if (BRAND) {
+		} else if (BRAND) {
 			search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
 							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
