@@ -154,6 +154,8 @@ public class DatabaseConnector {
 		
 		String search = SEARCH_FULLTEXT;
 		System.out.println(param);
+		System.out.println(search);
+
 		
 		if (MIXED_DRINK) {
 			if (INGREDIENT) {

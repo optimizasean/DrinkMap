@@ -55,14 +55,12 @@ public class FXMLDocumentController implements Initializable {
     // FIND
     @FXML private Label findHeader;
     @FXML private Label findLabelSearch;
-    @FXML private TextField findSearch;
+    @FXML private TextField findSearchBar;
     @FXML private Label findDisplay;
     @FXML private TextArea findRes;
-    /*
-    @FXML private RadioButton findCheckDrink;
-    @FXML private RadioButton findCheckIngr;
-    @FXML private RadioButton findCheckBrand;
-    */
+    @FXML private CheckBox findDrink;
+    @FXML private CheckBox findIngr;
+    @FXML private CheckBox findBrand;
     
     // DRINK
     @FXML private Label drinkName;
@@ -110,7 +108,7 @@ public class FXMLDocumentController implements Initializable {
     			  hi, coll, mug, none;
     
     String id = ""; 	 // glass id;
-    String drink = "";	 // for search query
+    String input = "";	 // for search query
     
     String misc = "";
     ArrayList<String> chk = new ArrayList<String>();
@@ -170,9 +168,33 @@ public class FXMLDocumentController implements Initializable {
     }
     
     
+    // ISJGL;KDJFG;LKJSFLKJSDKL;FGJKOFLJG
+    public void display(ActionEvent display) throws SQLException {
+    	drinkIngr.setText("");
+    	drinkInstr.setText("");
+    	findRes.setText("");
+    	chk.clear();
+    	abv = 0;
+    	ct = 0;
+
+    	input = findSearchBar.getText(); 
+
+    	if(!findDrink.isSelected() && !findIngr.isSelected() && !findBrand.isSelected()) {
+    		findRes.setText("Need to select a filter. Please try again.");
+    		return;
+    	}
+    	
+    	result = dbc.search_fulltext(input, findDrink.isSelected(), findIngr.isSelected(), findBrand.isSelected());
+    	
+    	while(result.next()) {
+	    		findRes.appendText(result.getString("NAME") + "\n");
+	    }
+    }
     
+    
+    /*
  	// U G L Y -- you aint got no alibi, you ugly
-    public void search(ActionEvent search) throws SQLException {
+    public void display(ActionEvent display) throws SQLException {
     	// reset these values after every search
     	drinkIngr.setText("");
     	drinkInstr.setText("");
@@ -181,14 +203,14 @@ public class FXMLDocumentController implements Initializable {
     	ct = 0;
     	
     	// get text from search field
-    	drink = findSearch.getText();
+    	input = findSearchBar.getText();
     	
     	// create result set based off search query
-    	result = dbc.select_mixed_drink(drink);
+    	result = dbc.select_mixed_drink(input);
     	
     	// no such drink found
     	if(!result.isBeforeFirst()) {
-    		findRes.setText(drink + " not found. Check spelling and search again.");
+    		findRes.setText(input + " not found. Check spelling and search again.");
     		tabDrink.setDisable(true);
     	}
     	
@@ -261,7 +283,8 @@ public class FXMLDocumentController implements Initializable {
 	        	
 	    	}
     	}
-    }
+    }*/
+     
     
     public void drinkReview(ActionEvent drink) {
     	
