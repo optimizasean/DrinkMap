@@ -65,12 +65,25 @@ END;
 GO
 ------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------FIND GLASSWARE ID FROM NAME
-CREATE FUNCTION FUNCTION_GLASSWARE_ID(@GLASSWARE_ID VARCHAR(MAX))
+CREATE FUNCTION FUNCTION_GLASSWARE_ID(@GLASSWARE_NAME VARCHAR(MAX))
 RETURNS INT
 AS
 BEGIN
 	DECLARE @ret INT
-	SET @ret = (SELECT ID FROM GLASSWARE WHERE NAME = @GLASSWARE_ID);
+	SET @ret = (SELECT ID FROM GLASSWARE WHERE NAME = @GLASSWARE_NAME);
+	IF (@ret IS NULL)
+		SET @ret = 0;
+	RETURN @ret;
+END;
+GO
+------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------FIND LOCATION ID FROM NAME
+CREATE FUNCTION FUNCTION_LOCATION_ID(@LOCATION_NAME VARCHAR(MAX))
+RETURNS INT
+AS
+BEGIN
+	DECLARE @ret INT
+	SET @ret = (SELECT ID FROM GLASSWARE WHERE NAME = @LOCATION_NAME);
 	IF (@ret IS NULL)
 		SET @ret = 0;
 	RETURN @ret;

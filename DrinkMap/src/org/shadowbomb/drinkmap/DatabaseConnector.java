@@ -145,7 +145,7 @@ public class DatabaseConnector {
 	public ResultSet search_fulltext(String args, boolean MIXED_DRINK, boolean INGREDIENT, boolean BRAND) {
 		ResultSet rs = null;
 		
-		String[] arr = process_String(args).split(",|\\s");
+		String[] arr = process_String(args).split(",");
 		
 		String param = "'";
 		for (int i = 0; i < arr.length; i++) {
@@ -160,25 +160,25 @@ public class DatabaseConnector {
 		if (MIXED_DRINK) {
 			if (INGREDIENT) {
 				if (BRAND) {
-					search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
-							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
-							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+					search += "FULL OUTER JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "FULL OUTER JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "FULL OUTER JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
 							+ "OR" + " "
 						+ "CONTAINS(INGREDIENT.Name, " + param + ")" + " "
 							+ "OR" + " "
 						+ "CONTAINS(MIXED_DRINK.Name, " + param + ");";
 				} else {
-					search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
-							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+					search += "FULL OUTER JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "FULL OUTER JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ")" + " "
 							+ "OR" + " "
 						+ "CONTAINS(MIXED_DRINK.Name, " + param + ");";
 				}
 			} else if (BRAND) {
-				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
-							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
-							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+				search += "FULL OUTER JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "FULL OUTER JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "FULL OUTER JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
 							+ "OR" + " "
 						+ "CONTAINS(MIXED_DRINK.Name, " + param + ");";
@@ -187,33 +187,40 @@ public class DatabaseConnector {
 			}
 		} else if (INGREDIENT) {
 			if (BRAND) {
-				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
-							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
-							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+				search += "FULL OUTER JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "FULL OUTER JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "FULL OUTER JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ")" + " "
 							+ "OR" + " "
 						+ "CONTAINS(INGREDIENT.Name, " + param + ");";
 			} else {
-				search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
-							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+				search += "FULL OUTER JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "FULL OUTER JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
 						+ "WHERE CONTAINS(INGREDIENT.Name, " + param + ");";
 			}
 		} else if (BRAND) {
-			search += "LEFT JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
-							+ "LEFT JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
-							+ "LEFT JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
+			search += "FULL OUTER JOIN INGREDIENT_MIX ON MIXED_DRINK.ID = INGREDIENT_MIX.ID" + " "
+							+ "FULL OUTER JOIN INGREDIENT ON INGREDIENT_MIX.ID = INGREDIENT.ID" + " "
+							+ "FULL OUTER JOIN BRAND ON INGREDIENT.BRAND_ID = BRAND.ID" + " "
 						+ "WHERE CONTAINS(BRAND.Name, " + param + ");";
 		}
 		rs = query(search);
     	return rs;
 	}
 	
-	public void insert_query(int star, String name) throws SQLException {
+	public void rate_drink(int rating, String name) throws SQLException {
 		Statement stmt = conn.createStatement();
-		String s = "insert into review_drink(rating, mixed_drink_id) values(" +
-					star + ", " + "(SELECT dbo.FUNCTION_MIXED_DRINK_ID('" +
+		String run = "INSERT INTO REVIEW_DRINK(RATING, MIXED_dRINK_ID) VALUES(" +
+					rating + ", " + "(SELECT dbo.FUNCTION_MIXED_DRINK_ID('" +
 					name + "')))";
-		stmt.execute(s);
+		stmt.execute(run);
+	}
+	public void rate_location(int rating, String name) throws SQLException {
+		Statement stmt = conn.createStatement();
+		String run = "INSERT INTO REVIEW_LOCATION(RATING, MIXED_dRINK_ID) VALUES(" +
+					rating + ", " + "(SELECT dbo.FUNCTION_LOCATION_ID('" +
+					name + "')))";
+		stmt.execute(run);
 	}
     
 	/*
