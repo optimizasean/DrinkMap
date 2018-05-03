@@ -37,7 +37,7 @@ public class DatabaseConnector {
 	private final transient String SELECT_MIXED_DRINK = "SELECT * FROM dbo.SELECT_MIXED_DRINK";
 	private final transient String SEARCH_ALL = "SELECT * FROM dbo.SEARCH_ALL;";
 	private final transient String SEARCH_FULLTEXT = "SELECT MIXED_DRINK.NAME FROM MIXED_DRINK ";
-	private final transient String SEARCH_LOCATION = "SELECT * from dbo.SEARCH_LOCATIONS";
+	private final transient String SEARCH_LOCATION = "SELECT * from dbo.SEARCH_LOCATION";
 	
 	// BLAH
 
