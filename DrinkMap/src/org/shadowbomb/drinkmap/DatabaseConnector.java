@@ -18,8 +18,6 @@ public class DatabaseConnector {
     private final String dbName = "DrinkMap";
     private final String user = "DrinkMap_Application_User@DrinkMap";
     private final String password = "psw321$@pp";
-    //private final String user = "lorrainej";
-    //private final String password = "somethingREALLY!!!hard";
     private final String encrypt = "true";
     private final String trustServerCertificate = "false";
     private final String hostNameInCertificate = "*.database.windows.net";
