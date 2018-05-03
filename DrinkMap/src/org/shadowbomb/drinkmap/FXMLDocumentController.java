@@ -5,6 +5,7 @@ import java.net.URL;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -13,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Separator;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
@@ -42,16 +42,11 @@ public class FXMLDocumentController implements Initializable {
     @FXML private Tab tabAbout;
     
     // HOME
-    @FXML private Label homeHeader;
-    @FXML private Label homeText;
-    @FXML private Label homeLabelTop;
     @FXML private Label homeTop1;
     @FXML private Label homeTop2;
     @FXML private Label homeTop3;
     
     // FIND
-    @FXML private Label findHeader;
-    @FXML private Label findLabelSearch;
     @FXML private TextField findSearchBar;
     @FXML private Label findDisplay;
     @FXML private TextArea findRes;
@@ -77,28 +72,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML private TextArea drinkIngr;
     
     // INDEX
-    @FXML private Label indexHeader;
     @FXML private Label indexText;
-    @FXML private Separator indexDiv;
     @FXML private TextArea indexTable;
-    
-    // ABOUT
-    @FXML private Label aboutHeader;
-    @FXML private Label aboutSean;
-    @FXML private Label aboutSeanInfo;
-    @FXML private Label aboutLorraine;
-    @FXML private Label aboutLorraineInfo;
-    @FXML private Label aboutLine;
-    @FXML private Label aboutLineInfo;
-    @FXML private Label aboutMette;
-    @FXML private Label aboutMetteInfo;
-    @FXML private ImageView aboutImg1;
-    @FXML private ImageView aboutImg2;
-    @FXML private ImageView aboutImg3;
-    @FXML private ImageView aboutImg4;
-    
-    // LOCATION
-    @FXML private Label locHeader;
     @FXML private TextArea locTable;
     
     private Image marg, hurr, old, poco, coupe, wine, flute, mart, shot, coff,
@@ -114,6 +89,7 @@ public class FXMLDocumentController implements Initializable {
     int ct, rt;
     double abv, starr;
     boolean rate = false;
+    Random randNum = new Random();
     
     DecimalFormat df = new DecimalFormat("##.##");
     
@@ -134,6 +110,7 @@ public class FXMLDocumentController implements Initializable {
     	// generate "index", which is just a list of drinksand locations
     	try {
 			setIndex();
+			topDisplay();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -178,20 +155,13 @@ public class FXMLDocumentController implements Initializable {
     
     // ISJGL;KDJFG;LKJSFLKJSDKL;FGJKOFLJG
     public void search(ActionEvent search) throws SQLException {
-    	drinkIngr.setText("");
-    	drinkInstr.setText("");
-    	findRes.setText("");
-    	chk.clear();
-    	abv = 0;
-    	ct = 0;
-    	rt = 0;
+    	reset();
 
     	if(!findDrink.isSelected() && !findIngr.isSelected() && !findBrand.isSelected()) {
     		findRes.setText("Need to select a filter. Please try again.");
     		return;
     	}
     	
-    	System.out.println("If completed");
     	input = findSearchBar.getText(); 
     	
     	result = dbc.search_fulltext(input, findDrink.isSelected(), findIngr.isSelected(), findBrand.isSelected());
@@ -211,14 +181,7 @@ public class FXMLDocumentController implements Initializable {
  	// U G L Y -- you aint got no alibi, you ugly
     public void display(ActionEvent display) throws SQLException {
     	// reset these values after every search
-    	drinkLabelRate.setText("Rate this drink?");
-    	drinkIngr.setText("");
-    	drinkInstr.setText("");
-    	chk.clear();
-    	abv = 0;
-    	ct = 0;
-    	rt = 0;
-    	starr = 0;
+    	reset();
     	
     	// if something was previously rated, clear rating
     	if(rating.getSelectedToggle() != null) {
@@ -347,18 +310,49 @@ public class FXMLDocumentController implements Initializable {
     	
     } // END GETRATING METHOD
     
-    public void topDisplay() {
-    	/* TODO
-    	 * 1. result set, initialize shit probably lol
-    	 * 2. select TOP 3 mixed_drink_id from review_drink group by mixed_drink_id 
-    	 * 3. retrieve from mixed_drink the name of the drink, lmao...
-    	 * 4. result => set label1 = getstring(), set label2 = getstring() etc etc => .next
-    	 * 5. blah
-    	 */
+    public void topDisplay() throws SQLException {
+    	ResultSet rs = null;
+    	ResultSet nm = null;
+    	int id;
+    	rs = dbc.query("SELECT TOP 3 MIXED_DRINK_ID from REVIEW_DRINK " +
+    				   "GROUP BY MIXED_DRINK_ID");
+    	
+    	for(int i = 0; i < 3; i++) {
+    		rs.next();
+    		id = rs.getInt("MIXED_DRINK_ID");
+    		nm = dbc.query("SELECT * FROM MIXED_DRINK WHERE ID = " + id);
+    		nm.next();
+    		if(i == 0) 	 	homeTop1.setText(nm.getString("NAME"));
+    		else if(i == 1) homeTop2.setText(nm.getString("NAME"));
+    		else			homeTop3.setText(nm.getString("NAME"));
+    		
+    	}
     }
     
-    public void random(ActionEvent random) {
+    public void random(ActionEvent random) throws SQLException {
+    	int randumb = 0;
+    	String namae = "";
+    	randumb = randNum.nextInt(87) + 1;
+    	
+    	ResultSet rs = null;
+    	rs = dbc.query("SELECT * FROM MIXED_DRINK WHERE ID = " + randumb);
+    	rs.next();
+    	namae = rs.getString("NAME");
+    	
+    	findSearchBar.setText(namae);
+    	display(random);
     	
     }
+    
+    public void reset() {
+    	drinkLabelRate.setText("Rate this drink?");
+    	drinkIngr.setText("");
+    	drinkInstr.setText("");
+    	chk.clear();
+    	abv = 0;
+    	ct = 0;
+    	rt = 0;
+    	starr = 0;
+    } // END RESET METHOD
   
 }
