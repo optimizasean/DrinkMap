@@ -30,7 +30,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FXMLDocumentController implements Initializable {
     // MAIN STUFF
-	
 	@FXML private AnchorPane layoutPane;
 	
 	//@FXML private ImageView logogo;
@@ -79,38 +78,40 @@ public class FXMLDocumentController implements Initializable {
     @FXML private TextArea indexTable;
     @FXML private TextArea locTable;
     
-    private Image marg, hurr, old, poco, coupe, wine, flute, mart, shot, coff,
-    			  hi, coll, mug, none;
+    private Image margarita, hurricane, oldfashioned, poco, coupe, wine, flute,
+    			  martini, shot, coffee, highball, collins, mug, none;
     
-    String id = ""; 	 // glass id;
-    String input = "";	 // for search query
-    String misc = "";	 // i don't remember anymore lmao
+    // OTHER USEFUL THINGS TO HAVE
+    String id = ""; 
+    String input = "";
+    String misc = "";
     String name = "";
    
-    ArrayList<String> chk = new ArrayList<String>();
+    ArrayList<String> checkExists = new ArrayList<String>();
     ToggleGroup rating = new ToggleGroup();
-    int ct, rt;
-    double abv, starr;
+    int countIngr;
+    double abv, star;
     boolean rate = false;
     Random randNum = new Random();
-    
+
     DecimalFormat df = new DecimalFormat("##.##");
     
     DatabaseConnector dbc = new DatabaseConnector();
-    ResultSet result = null;	 // general results
+    ResultSet result = null;
+    ResultSet rs = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
     	tabDrink.setDisable(true); // grey out DRINK tab until something is searched
     	
-    	// probably good that they can't edit stuff lmao
     	// TODO : make it not a TextArea anymore => change to TextFlow
+    	// sets so users can't edit text box
     	locTable.setEditable(false);
     	indexTable.setEditable(false);
     	drinkInstr.setEditable(false);
     	drinkIngr.setEditable(false);
     	
-    	// generate "index", which is just a list of drinks and locations
+    	// have a few things displayed 
     	try {
 			setIndex();
 			topDisplay();
@@ -138,18 +139,18 @@ public class FXMLDocumentController implements Initializable {
     	InputStream url_image_mug = this.getClass().getResourceAsStream("/mug.png");
     	InputStream url_image_none = this.getClass().getResourceAsStream("/none.png");
     	
-    	marg = new Image(url_image_margarita);
-    	hurr = new Image(url_image_hurricane);
-    	old = new Image(url_image_old_fashioned);
+    	margarita = new Image(url_image_margarita);
+    	hurricane = new Image(url_image_hurricane);
+    	oldfashioned = new Image(url_image_old_fashioned);
     	poco = new Image(url_image_poco);
     	coupe = new Image(url_image_coupe);
     	wine = new Image(url_image_wine);
     	flute = new Image(url_image_flute);
-    	mart = new Image(url_image_martini);
+    	martini = new Image(url_image_martini);
     	shot = new Image(url_image_shot);
-    	coff = new Image(url_image_coffee);
-    	hi = new Image(url_image_highball);
-    	coll = new Image(url_image_collins);
+    	coffee = new Image(url_image_coffee);
+    	highball = new Image(url_image_highball);
+    	collins = new Image(url_image_collins);
     	mug = new Image(url_image_mug);
     	none = new Image(url_image_none);
     	
@@ -162,6 +163,10 @@ public class FXMLDocumentController implements Initializable {
     	
     } // END INITILIAZE METHOD
    
+    /******************************************************************************
+     * Method will do two things: 1. Retrieve all mixed drink names and display
+     * 							  2. Retrieve all location names and display
+    *******************************************************************************/
     public void setIndex() throws SQLException { 
     	result = dbc.select_all_mixed_drink();
     	while(result.next()) {
@@ -175,17 +180,24 @@ public class FXMLDocumentController implements Initializable {
     	
     } // END SETINDEX METHOD
     
-    
-    // ISJGL;KDJFG;LKJSFLKJSDKL;FGJKOFLJG
+    /******************************************************************************
+     * SEARCH is the method that will pull up a list of drink names where the
+     * input text is compared against drink names, ingredients, and brands depending
+     * on which filters were checked.
+     * 
+     * The actual function (search_fulltext) is not completely accurate, as some
+     * things will show when they should not, or vice versa.
+    *******************************************************************************/
     public void search(ActionEvent search) throws SQLException {
     	reset();
 
+    	// one of the filters must be applied
     	if(!findDrink.isSelected() && !findIngr.isSelected() && !findBrand.isSelected()) {
     		findRes.setText("Need to select a filter. Please try again.");
     		return;
     	}
     	
-    	input = findSearchBar.getText(); 
+    	input = findSearchBar.getText();
     	
     	result = dbc.search_fulltext(input, findDrink.isSelected(), findIngr.isSelected(), findBrand.isSelected());
     	
@@ -199,9 +211,17 @@ public class FXMLDocumentController implements Initializable {
 	    }
     } // SET SEARCH METHOD
     
-    
-    
- 	// U G L Y -- you aint got no alibi, you ugly
+    /******************************************************************************
+     * DISPLAY refers to the actual drink display. Once the user inputs a valid
+     * drink name, the method will pull up all information that is required.
+     * 
+     * 1. Drink name
+     * 2. Ingredients and garnishes
+     * 3. Instructions for drink and garnishes
+     * 4. ABV => Alcohol By Volume, or the average alcohol content %
+     * 5. Average rating
+     * 6. Drinkware, which is not explicitly stated but translated into an image
+    *******************************************************************************/
     public void display(ActionEvent display) throws SQLException {
     	// reset these values after every search
     	reset();
@@ -211,7 +231,6 @@ public class FXMLDocumentController implements Initializable {
     		rating.getSelectedToggle().setSelected(false);
     		rate = false;
     	}
-    	
 
     	// get text from search field
     	input = findSearchBar.getText();
@@ -225,78 +244,104 @@ public class FXMLDocumentController implements Initializable {
     		tabDrink.setDisable(true);
     	}
     	
+    	// drink is found
     	else {
-    	
 	    	while(result.next()) {
-	    		findRes.setText("");
+	    		findRes.setText(""); // clear FIND tab's textArea for future searches
 	    	    
 	    		// enable drink tab if not already enabled, then switch to tab
 	    		if (tabDrink.isDisabled()) {
 	    			tabDrink.setDisable(false);
 	    		}
-	    		
 	    		tabPane.getSelectionModel().select(tabDrink);
 	    			
-	
 	    		// display name, ingredient, and instructions
 	    		// TODO : DISPLAY EACH INGREDIENTS FIRST, GARNISHES LAST
 	    		name = result.getString("MIXED_DRINK_NAME");
 	    		drinkName.setText(name.toUpperCase());
 	    		
-	    		// fuckin lmao
-	    		if(!chk.contains(result.getString("INGREDIENT_NAME"))) {
-	    			chk.add(result.getString("INGREDIENT_NAME"));
+	    		/******************************************************************************
+	    	     * Very poor workaround for a possible server-side or just appliation-side
+	    	     * oddness regarding duplicate entries. For each garnish, the ingredient is
+	    	     * listed that many times. So if tthere are 3 garnishes, each ingredient is
+	    	     * listed 3 times. Should not be happening?
+	    	     * 
+	    	     * This populates an ArrayList filled with ingredient names. If the ingredient
+	    	     * is already entered, then do not print it out again. Also, this prevents the
+	    	     * ABV being much higher or lower than it should be.
+	    	     * 
+	    	     * (This should also be a method, lol)
+	    	    *******************************************************************************/
+	    		if(!checkExists.contains(result.getString("INGREDIENT_NAME"))) {
+	    			checkExists.add(result.getString("INGREDIENT_NAME"));
 	    			drinkIngr.appendText(result.getDouble("INGREDIENT_MIX_RATIO") + " " + 
 							 result.getString("INGREDIENT_MIX_UNIT")  + " " + 
 							 result.getString("INGREDIENT_NAME") + "\n");
 	    			
 	    			// for ABV
-	    			ct++;
+	    			countIngr++;
 	    			abv += result.getDouble("INGREDIENT_ABV");		// sum of all abv
-	        		drinkABV.setText("ABV : " + df.format(abv/ct)); // avg abv
+	        		drinkABV.setText("ABV : " + df.format(abv/countIngr)); // avg abv
 	    		}
 	    		
-	    		// dumb as shit
+	    		/******************************************************************************
+	    	     * Similar to above, but now for checking the garnishes. This prevents a
+	    	     * garnish from being listed multiple times.
+	    	    *******************************************************************************/
 	    		if(result.getString("GARNISH_NAME") != null &&
 	    				!(result.getString("GARNISH_NAME").equals("N/A")) &&
 	    				!(result.getString("GARNISH_NAME").equals("Straw")) &&
-	    				!(chk.contains(result.getString("GARNISH_NAME")))) {
-	    			chk.add(result.getString("GARNISH_NAME"));
+	    				!(checkExists.contains(result.getString("GARNISH_NAME")))) {
+	    			checkExists.add(result.getString("GARNISH_NAME"));
 	    			drinkIngr.appendText(result.getString("GARNISH_NAME") + "\n");
 	    			misc = result.getString("GARNISH_NAME");
 	    		}
 	    		
+	    		// set instructions for ingredients
 	        	drinkInstr.setText(result.getString("INSTRUCTIONS"));
 	        	
+	        	// if no garnish => no garnish instructions
 	        	if(result.getString("GARNISH_MIX_MIXTURE") != null) {
 	    			drinkInstr.appendText("\n" + result.getString("GARNISH_MIX_MIXTURE"));
 	        	}
 	        	 
-	        	// retrieve glassware name and set image accordingly
+	        	/******************************************************************************
+	             * This will retrieve the ID of the mixed drink, and then use that to determine
+	             * the name of the glassware. Once the String is retrieved, the image of the
+	             * glass will be set accordingly.
+	            *******************************************************************************/
 	        	id = result.getString("GLASSWARE_NAME");
 	        	switch(id) { 
-	    	        case "Champagne Coupe Glass":	drinkImg.setImage(coupe); break;
-	    	        case "Champagne Tulip Glass":	drinkImg.setImage(poco);  break;
-	    	        case "Cocktail Glass":  		drinkImg.setImage(mart);  break;
-	    	        case "Collins Glass":			drinkImg.setImage(coll);  break;
-	    	        case "Copper Mug":				drinkImg.setImage(mug);   break;
-	    	        case "Flute Glass":				drinkImg.setImage(flute); break;
-	    	        case "Highball Glass":			drinkImg.setImage(hi);	  break;
-	    	        case "Hurricane Glass":			drinkImg.setImage(hurr);  break;
-	    	        case "Irish Coffee Glass":		drinkImg.setImage(coff);  break;
-	    	        case "Margarita Glass":			drinkImg.setImage(marg);  break;
-	    	        case "Martini Glass":			drinkImg.setImage(mart);  break;
-	    	        case "Old Fashioned Glass":		drinkImg.setImage(old);   break;
-	    	        case "Shot glass":				drinkImg.setImage(shot);  break;
-	    	        case "White Wine Glass":		drinkImg.setImage(wine);  break;
-	    	        case "White Wine Tulip Glass":	drinkImg.setImage(poco);  break;
+	    	        case "Champagne Coupe Glass":	drinkImg.setImage(coupe);			break;
+	    	        case "Champagne Tulip Glass":	drinkImg.setImage(poco); 		 	break;
+	    	        case "Cocktail Glass":  		drinkImg.setImage(martini);  		break;
+	    	        case "Collins Glass":			drinkImg.setImage(collins);  		break;
+	    	        case "Copper Mug":				drinkImg.setImage(mug);  			break;
+	    	        case "Flute Glass":				drinkImg.setImage(flute);			break;
+	    	        case "Highball Glass":			drinkImg.setImage(highball);		break;
+	    	        case "Hurricane Glass":			drinkImg.setImage(hurricane);  		break;
+	    	        case "Irish Coffee Glass":		drinkImg.setImage(coffee);  		break;
+	    	        case "Margarita Glass":			drinkImg.setImage(margarita);  		break;
+	    	        case "Martini Glass":			drinkImg.setImage(martini);  		break;
+	    	        case "Old Fashioned Glass":		drinkImg.setImage(oldfashioned);	break;
+	    	        case "Shot glass":				drinkImg.setImage(shot); 			break;
+	    	        case "White Wine Glass":		drinkImg.setImage(wine);  			break;
+	    	        case "White Wine Tulip Glass":	drinkImg.setImage(poco); 			break;
 	    	        default: 						drinkImg.setImage(none);
 	        	} // END IMAGE SWITCH 
 	    	} // END WHILE
-	    	drinkRate.setText("★ : " + df.format(getRating(name)));
+	    	drinkRate.setText("★ : " + df.format(getRating(name))); // display rating
     	} // END ELSE
     } // END DISPLAY METHOD
     
+    /******************************************************************************
+     * The DRINKREVIEW method will check what button has been selected. The method
+     * then calls a function rate_drink that takes in the rating (1-5) and the name
+     * of the drink being rated.
+     * 
+     * An entry is then inserted into the review_drink table and a boolean is set
+     * so that a user cannot spam their ratings.
+    *******************************************************************************/
     public void drinkReview(ActionEvent drinkReview) throws SQLException {
     	if(!rate) {
 			if		(drinkRate1.isSelected()) dbc.rate_drink(1, name);
@@ -310,13 +355,24 @@ public class FXMLDocumentController implements Initializable {
     	}
     } // END DRINKREVIEW METHOD
     
+    /******************************************************************************
+     * Method is not implemented but will follow the drinkReview method.
+     * 
+     * TODO : Actually make the method
+     * 		  Possibly generalize method to work with both drinks and locations
+    *******************************************************************************/
     public void locReview(ActionEvent loc) {
-    	// TODO : MAKE THIS FUNCTIONAL?
+    	
     } // END LOCREVIEW METHOD
     
-    // TODO : GENERALIZE FUNCTION TO WORK WITH LOCATIONS
+    /******************************************************************************
+     * This method will retrieve the rating(s) of a mixed drink. It will get
+     * the values and count how many ratings there are. The method will then return
+     * the average rating.
+     * 
+     * TODO : Make this an actual function in the database
+    *******************************************************************************/
     public double getRating(String drink) throws SQLException {
-    	ResultSet rs = null;
     	rs = dbc.query("select rating from review_drink where mixed_drink_id " + 
     				   "= (SELECT dbo.FUNCTION_MIXED_DRINK_ID('" + 
     				   drink + "'))");
@@ -333,8 +389,18 @@ public class FXMLDocumentController implements Initializable {
     	
     } // END GETRATING METHOD
     
+    /******************************************************************************
+     * This method is not accurate. It selects the top 3 drinks, but it is not based
+     * on its rating (which should seriously become its own function). It selects
+     * the drinks based on how many reviews it has.
+     * 
+     * Once the ResultSet is created, the first row should have the most rated
+     * drink, followed by the second and third. They are then displayed.
+     * 
+     * TODO : Once a rating function is made, utilize it so that the top 3
+     * 		  drinks will show based on its RATING, not amount of rating entries.
+    *******************************************************************************/
     public void topDisplay() throws SQLException {
-    	ResultSet rs = null;
     	ResultSet nm = null;
     	int id;
     	rs = dbc.query("SELECT TOP 3 MIXED_DRINK_ID from REVIEW_DRINK " +
@@ -350,33 +416,40 @@ public class FXMLDocumentController implements Initializable {
     		else			homeTop3.setText(nm.getString("NAME"));
     		
     	}
-    }
+    } // END OF TOPDISPLAY METHOD
     
+    /******************************************************************************
+     * This method could be better. There are currently 87 drinks in the database,
+     * which is why it's hardcoded in. A random number is generated and then we
+     * search the database for the drink with that ID. The drink is then searched
+     * and the display() method is called.
+     * 
+     * TODO : Don't hardcode because # of drinks can always change
+    *******************************************************************************/
     public void random(ActionEvent random) throws SQLException {
-    	int randumb = 0;
-    	String namae = "";
-    	randumb = randNum.nextInt(87) + 1;
+    	int randumb = randNum.nextInt(87) + 1;
     	
-    	ResultSet rs = null;
     	rs = dbc.query("SELECT * FROM MIXED_DRINK WHERE ID = " + randumb);
     	rs.next();
-    	namae = rs.getString("NAME");
+    	name = rs.getString("NAME");
     	
-    	findSearchBar.setText(namae);
+    	findSearchBar.setText(name);
     	display(random);
     	
     }
     
+    /******************************************************************************
+     * Simply resets TextAreas and variables once a search or display is done.
+    *******************************************************************************/
     public void reset() {
     	drinkLabelRate.setText("Rate this drink?");
     	drinkIngr.setText("");
     	drinkInstr.setText("");
     	findRes.setText("");
-    	chk.clear();
+    	checkExists.clear();
     	abv = 0;
-    	ct = 0;
-    	rt = 0;
-    	starr = 0;
+    	countIngr = 0;
+    	star = 0;
     } // END RESET METHOD
   
 }

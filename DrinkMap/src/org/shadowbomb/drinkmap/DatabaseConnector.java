@@ -147,6 +147,7 @@ public class DatabaseConnector {
     	return rs;
 	}
 
+    
 	public ResultSet search_fulltext(String args, boolean MIXED_DRINK, boolean INGREDIENT, boolean BRAND) {
 		ResultSet rs = null;
 		

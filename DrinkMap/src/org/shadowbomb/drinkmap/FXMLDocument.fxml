@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1024.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shadowbomb.drinkmap.FXMLDocumentController">
+<VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.shadowbomb.drinkmap.FXMLDocumentController">
    <children>
       <AnchorPane fx:id="layoutPane">
          <children>
@@ -252,22 +252,22 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="90.0" layoutY="125.0" preserveRatio="true">
+                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="90.0" layoutY="109.0" preserveRatio="true">
                            <image>
                               <Image url="@../../../../resources/ribbon.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="450.0" layoutY="125.0" preserveRatio="true">
+                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="450.0" layoutY="109.0" preserveRatio="true">
                            <image>
                               <Image url="@../../../../resources/ribbon.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="90.0" layoutY="415.0" preserveRatio="true">
+                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="90.0" layoutY="385.0" preserveRatio="true">
                            <image>
                               <Image url="@../../../../resources/ribbon.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="450.0" layoutY="415.0" preserveRatio="true">
+                        <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="450.0" layoutY="385.0" preserveRatio="true">
                            <image>
                               <Image url="@../../../../resources/ribbon.png" />
                            </image>
@@ -277,47 +277,47 @@
                               <Font name="Arial Bold" size="54.0" />
                            </font>
                         </Label>
-                        <Label fx:id="aboutSean" layoutX="188.0" layoutY="126.0" text="SEAN" textAlignment="CENTER" textFill="#364657">
+                        <Label fx:id="aboutSean" layoutX="188.0" layoutY="110.0" text="SEAN" textAlignment="CENTER" textFill="#364657">
                            <font>
                               <Font name="Arial Bold" size="32.0" />
                            </font>
                         </Label>
-                        <Label fx:id="aboutLine" layoutX="197.0" layoutY="417.0" text="LINE" textAlignment="CENTER" textFill="#364657">
+                        <Label fx:id="aboutLine" layoutX="197.0" layoutY="387.0" text="LINE" textAlignment="CENTER" textFill="#364657">
                            <font>
                               <Font name="Arial Bold" size="32.0" />
                            </font>
                         </Label>
-                        <Label fx:id="abtLorraine" layoutX="508.0" layoutY="127.0" text="LORRAINE" textAlignment="CENTER" textFill="#364657">
+                        <Label fx:id="abtLorraine" layoutX="508.0" layoutY="111.0" text="LORRAINE" textAlignment="CENTER" textFill="#364657">
                            <font>
                               <Font name="Arial Bold" size="32.0" />
                            </font>
                         </Label>
-                        <Label fx:id="aboutMette" layoutX="540.0" layoutY="416.0" text="METTE" textAlignment="CENTER" textFill="#364657">
+                        <Label fx:id="aboutMette" layoutX="540.0" layoutY="386.0" text="METTE" textAlignment="CENTER" textFill="#364657">
                            <font>
                               <Font name="Arial Bold" size="32.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="87.0" layoutY="209.0" prefHeight="178.0" prefWidth="295.0" text="- Code monkey&#10;- Violin instructor and composer&#10;- 24/7 gamer&#10;- Doesn't like trains&#10;- Speed fanatic&#10;&#10;♥ : Margarita" textFill="WHITE">
+                        <Label alignment="TOP_LEFT" layoutX="87.0" layoutY="193.0" prefHeight="178.0" prefWidth="295.0" text="- Code monkey&#10;- Violin instructor and composer&#10;- 24/7 gamer&#10;- Doesn't like trains&#10;- Speed fanatic&#10;&#10;♥ : Margarita" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="19.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="447.0" layoutY="212.0" prefHeight="174.0" prefWidth="295.0" text="- The other code monkey&#10;- Can't swim or code&#10;- Addicted to bread&#10;- Wants to pass this class&#10;- Sleep enthusiast&#10;&#10;♥ : Long Island Iced Tea" textFill="WHITE">
+                        <Label alignment="TOP_LEFT" layoutX="447.0" layoutY="196.0" prefHeight="174.0" prefWidth="295.0" text="- The other code monkey&#10;- Can't swim or code&#10;- Addicted to bread&#10;- Wants to pass this class&#10;- Sleep enthusiast&#10;&#10;♥ : Long Island Iced Tea" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="19.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="87.0" layoutY="499.0" prefHeight="160.0" prefWidth="295.0" text="- Database person&#10;- Loves dogs&#10;- Can't lie (turns red easily)&#10;- Gets in too deep with TV shows&#10;- Likes to mix fruit punch with Rosé&#10;&#10;♥ : Sex on the Beach" textFill="WHITE" wrapText="true">
+                        <Label alignment="TOP_LEFT" layoutX="87.0" layoutY="469.0" prefHeight="160.0" prefWidth="295.0" text="- Database person&#10;- Loves dogs&#10;- Can't lie (turns red easily)&#10;- Gets in too deep with TV shows&#10;- Likes to mix fruit punch with Rosé&#10;&#10;♥ : Sex on the Beach" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Arial" size="19.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="447.0" layoutY="502.0" prefHeight="163.0" prefWidth="295.0" text="- Database&#10;- Addicted to chickens&#10;- In love with tequila&#10;- Scared of cats&#10;- Would be lesbian for Ruby Rose&#10;&#10;♥ : Mojito" textFill="WHITE">
+                        <Label alignment="TOP_LEFT" layoutX="447.0" layoutY="472.0" prefHeight="163.0" prefWidth="295.0" text="- Other database person&#10;- Addicted to chickens&#10;- In love with tequila&#10;- Scared of cats&#10;- Would be lesbian for Ruby Rose&#10;&#10;♥ : Mojito" textFill="WHITE">
                            <font>
                               <Font name="Arial" size="19.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="678.0" prefHeight="79.0" prefWidth="732.0" text="so you just gonna bring me a drink on my drink presentation day to my drink presentation on my drink presentation with a drink" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="648.0" prefHeight="79.0" prefWidth="732.0" text="so you just gonna bring me a drink on my drink presentation day to my drink presentation on my drink presentation with a drink" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Arial" size="17.0" />
                            </font>
