@@ -349,6 +349,7 @@ public class FXMLDocumentController implements Initializable {
     	drinkLabelRate.setText("Rate this drink?");
     	drinkIngr.setText("");
     	drinkInstr.setText("");
+    	findRes.setText("");
     	chk.clear();
     	abv = 0;
     	ct = 0;
