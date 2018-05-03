@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project DrinkMap">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="C:/Users/Sean Harding/Documents/GitHub"/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/DrinkMap.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="org.shadowbomb.drinkmap.DrinkDB"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="${dir.workspace}/DrinkMap/DrinkMap/bin"/>
+            <zipfileset excludes="META-INF/*.SF" src="${dir.workspace}/DrinkMap/DrinkMap/libs/mssql-jdbc-6.4.0.jre9.jar"/>
+        </jar>
+    </target>
+</project>
