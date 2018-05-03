@@ -1,6 +1,7 @@
 package org.shadowbomb.drinkmap;
  
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.*;
 import java.text.DecimalFormat;
@@ -115,21 +116,36 @@ public class FXMLDocumentController implements Initializable {
 			e.printStackTrace();
 		}
     	
-    	// convoluted and ugly way 
-    	marg = new Image(new File("resources/margarita.png").toURI().toString());
-    	hurr = new Image(new File("resources/hurricane.png").toURI().toString());
-    	old = new Image(new File("resources/old.png").toURI().toString());
-    	poco = new Image(new File("resources/poco.png").toURI().toString());
-    	coupe = new Image(new File("resources/coupe.png").toURI().toString());
-    	wine = new Image(new File("resources/wine.png").toURI().toString());
-    	flute = new Image(new File("resources/flute.png").toURI().toString());
-    	mart = new Image(new File("resources/martini.png").toURI().toString());
-    	shot = new Image(new File("resources/shot.png").toURI().toString());
-    	coff = new Image(new File("resources/coffee.png").toURI().toString());
-    	hi = new Image(new File("resources/highball.png").toURI().toString());
-    	coll = new Image(new File("resources/collins.png").toURI().toString());
-    	mug = new Image(new File("resources/mug.png").toURI().toString());
-    	none = new Image(new File("resources/none.png").toURI().toString());
+    	// convoluted and ugly way
+    	InputStream url_image_margarita = this.getClass().getResourceAsStream("/margarita.png");
+    	InputStream url_image_hurricane = this.getClass().getResourceAsStream("/hurricane.png");
+    	InputStream url_image_old_fashioned = this.getClass().getResourceAsStream("/old.png");
+    	InputStream url_image_poco = this.getClass().getResourceAsStream("/poco.png");
+    	InputStream url_image_coupe = this.getClass().getResourceAsStream("/coupe.png");
+    	InputStream url_image_wine = this.getClass().getResourceAsStream("/wine.png");
+    	InputStream url_image_flute = this.getClass().getResourceAsStream("/flute.png");
+    	InputStream url_image_martini = this.getClass().getResourceAsStream("/martini.png");
+    	InputStream url_image_shot = this.getClass().getResourceAsStream("/shot.png");
+    	InputStream url_image_coffee = this.getClass().getResourceAsStream("/coffee.png");
+    	InputStream url_image_highball = this.getClass().getResourceAsStream("/highball.png");
+    	InputStream url_image_collins = this.getClass().getResourceAsStream("/collins.png");
+    	InputStream url_image_mug = this.getClass().getResourceAsStream("/mug.png");
+    	InputStream url_image_none = this.getClass().getResourceAsStream("/none.png");
+    	
+    	marg = new Image(url_image_margarita);
+    	hurr = new Image(url_image_hurricane);
+    	old = new Image(url_image_old_fashioned);
+    	poco = new Image(url_image_poco);
+    	coupe = new Image(url_image_coupe);
+    	wine = new Image(url_image_wine);
+    	flute = new Image(url_image_flute);
+    	mart = new Image(url_image_martini);
+    	shot = new Image(url_image_shot);
+    	coff = new Image(url_image_coffee);
+    	hi = new Image(url_image_highball);
+    	coll = new Image(url_image_collins);
+    	mug = new Image(url_image_mug);
+    	none = new Image(url_image_none);
     	
     	// UGH
     	drinkRate1.setToggleGroup(rating);
