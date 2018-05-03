@@ -37,6 +37,7 @@ public class DatabaseConnector {
 	private final transient String SELECT_MIXED_DRINK = "SELECT * FROM dbo.SELECT_MIXED_DRINK";
 	private final transient String SEARCH_ALL = "SELECT * FROM dbo.SEARCH_ALL;";
 	private final transient String SEARCH_FULLTEXT = "SELECT MIXED_DRINK.NAME FROM MIXED_DRINK ";
+	private final transient String SEARCH_LOCATION = "SELECT * from dbo.SEARCH_LOCATIONS";
 	
 	// BLAH
 
@@ -134,6 +135,12 @@ public class DatabaseConnector {
 		ResultSet rs = null;
     	rs = query(SEARCH_ALL);
     	return rs;
+	}
+	
+	public ResultSet select_all_location() {
+		ResultSet rs = null;
+		rs = query(SEARCH_LOCATION);
+		return rs;
 	}
 	
     public ResultSet select_mixed_drink(String mixed_drink) {
