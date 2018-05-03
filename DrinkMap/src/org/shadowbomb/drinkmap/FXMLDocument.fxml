@@ -22,7 +22,7 @@
          <children>
             <ImageView layoutX="30.0">
                <image>
-                  <Image url="@../../../../resources/logogo.png" />
+                  <Image url="@/logogo.png"/>
                </image>
             </ImageView>
          </children>

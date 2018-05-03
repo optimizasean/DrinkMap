@@ -33,6 +33,8 @@ public class FXMLDocumentController implements Initializable {
 	
 	@FXML private AnchorPane layoutPane;
 	
+	//@FXML private ImageView logogo;
+	
 	// TABS
     @FXML private TabPane tabPane;
     @FXML private Tab tabHome;
@@ -115,6 +117,10 @@ public class FXMLDocumentController implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+    	
+    	//InputStream url_image_logogo = this.getClass().getResourceAsStream("/logogo.png");
+    	//logogo = new ImageView(new Image(url_image_logogo));
+    	
     	
     	// convoluted and ugly way
     	InputStream url_image_margarita = this.getClass().getResourceAsStream("/margarita.png");
