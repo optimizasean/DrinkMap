@@ -107,7 +107,7 @@ public class FXMLDocumentController implements Initializable {
     	drinkInstr.setEditable(false);
     	drinkIngr.setEditable(false);
     	
-    	// generate "index", which is just a list of drinksand locations
+    	// generate "index", which is just a list of drinks and locations
     	try {
 			setIndex();
 			topDisplay();
@@ -141,15 +141,16 @@ public class FXMLDocumentController implements Initializable {
     } // END INITILIAZE METHOD
    
     public void setIndex() throws SQLException { 
-    	result = dbc.query("SELECT * FROM mixed_drink");
+    	result = dbc.select_all_mixed_drink();
     	while(result.next()) {
-    		indexTable.appendText(result.getString("NAME") + "\n");
+    		indexTable.appendText(result.getString("MIXED_DRINK_NAME") + "\n");
     	}
     	
-    	result = dbc.query("SELECT * FROM location");
+    	result = dbc.select_all_location();
     	while(result.next()) {
     		locTable.appendText(result.getString("NAME") + "\n");
     	}
+    	
     } // END SETINDEX METHOD
     
     
@@ -276,11 +277,11 @@ public class FXMLDocumentController implements Initializable {
     
     public void drinkReview(ActionEvent drinkReview) throws SQLException {
     	if(!rate) {
-			if		(drinkRate1.isSelected()) dbc.insert_query(1, name);
-			else if (drinkRate2.isSelected()) dbc.insert_query(2, name);
-			else if (drinkRate3.isSelected()) dbc.insert_query(3, name);
-			else if (drinkRate4.isSelected()) dbc.insert_query(4, name);
-			else 	dbc.insert_query(5, name);
+			if		(drinkRate1.isSelected()) dbc.rate_drink(1, name);
+			else if (drinkRate2.isSelected()) dbc.rate_drink(2, name);
+			else if (drinkRate3.isSelected()) dbc.rate_drink(3, name);
+			else if (drinkRate4.isSelected()) dbc.rate_drink(4, name);
+			else 	dbc.rate_drink(5, name);
 			
 			drinkLabelRate.setText("Thank you for rating!");
 			rate = true;
