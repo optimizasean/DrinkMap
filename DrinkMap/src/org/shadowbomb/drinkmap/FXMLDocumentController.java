@@ -45,10 +45,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML private Label homeHeader;
     @FXML private Label homeText;
     @FXML private Label homeLabelTop;
-    @FXML private ImageView homeTop1;
-    @FXML private ImageView homeTop2;
-    @FXML private ImageView homeTop3;
-    @FXML private ImageView homeTop4;
+    @FXML private Label homeTop1;
+    @FXML private Label homeTop2;
+    @FXML private Label homeTop3;
     
     // FIND
     @FXML private Label findHeader;
@@ -120,17 +119,21 @@ public class FXMLDocumentController implements Initializable {
     
     DatabaseConnector dbc = new DatabaseConnector();
     ResultSet result = null;	 // general results
-    ResultSet drinkIndex = null; // index result
-    ResultSet locIndex = null;	 // location results
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
     	tabDrink.setDisable(true); // grey out DRINK tab until something is searched
     	
-    	// generate "index", which is just a list of drinks
+    	// probably good that they can't edit stuff lmao
+    	// TODO : make it not a TextArea anymore => change to TextFlow
+    	locTable.setEditable(false);
+    	indexTable.setEditable(false);
+    	drinkInstr.setEditable(false);
+    	drinkIngr.setEditable(false);
+    	
+    	// generate "index", which is just a list of drinksand locations
     	try {
-			setDrink();
-			setLoc();
+			setIndex();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -157,22 +160,20 @@ public class FXMLDocumentController implements Initializable {
     	drinkRate3.setToggleGroup(rating);
     	drinkRate4.setToggleGroup(rating);
     	drinkRate5.setToggleGroup(rating);
-
-    }
+    	
+    } // END INITILIAZE METHOD
    
-    public void setDrink() throws SQLException { 
-    	drinkIndex = dbc.query("SELECT * FROM mixed_drink");
-    	while(drinkIndex.next()) {
-    		indexTable.appendText(drinkIndex.getString("NAME") + "\n");
+    public void setIndex() throws SQLException { 
+    	result = dbc.query("SELECT * FROM mixed_drink");
+    	while(result.next()) {
+    		indexTable.appendText(result.getString("NAME") + "\n");
     	}
-    }
-    
-    public void setLoc() throws SQLException { 
-    	locIndex = dbc.query("SELECT * FROM location");
-    	while(locIndex.next()) {
-    		locTable.appendText(locIndex.getString("NAME") + "\n");
+    	
+    	result = dbc.query("SELECT * FROM location");
+    	while(result.next()) {
+    		locTable.appendText(result.getString("NAME") + "\n");
     	}
-    }
+    } // END SETINDEX METHOD
     
     
     // ISJGL;KDJFG;LKJSFLKJSDKL;FGJKOFLJG
@@ -185,25 +186,32 @@ public class FXMLDocumentController implements Initializable {
     	ct = 0;
     	rt = 0;
 
-    	input = findSearchBar.getText(); 
-
     	if(!findDrink.isSelected() && !findIngr.isSelected() && !findBrand.isSelected()) {
     		findRes.setText("Need to select a filter. Please try again.");
     		return;
     	}
     	
+    	System.out.println("If completed");
+    	input = findSearchBar.getText(); 
+    	
     	result = dbc.search_fulltext(input, findDrink.isSelected(), findIngr.isSelected(), findBrand.isSelected());
+    	
+    	if(!result.isBeforeFirst()) {
+    		findRes.setText("\"" + input + "\" produced no results.");
+    		return;
+    	}
     	
     	while(result.next()) {
 	    		findRes.appendText(result.getString("NAME") + "\n");
 	    }
-    }
+    } // SET SEARCH METHOD
     
     
     
  	// U G L Y -- you aint got no alibi, you ugly
     public void display(ActionEvent display) throws SQLException {
     	// reset these values after every search
+    	drinkLabelRate.setText("Rate this drink?");
     	drinkIngr.setText("");
     	drinkInstr.setText("");
     	chk.clear();
@@ -227,7 +235,7 @@ public class FXMLDocumentController implements Initializable {
     	
     	// no such drink found
     	if(!result.isBeforeFirst()) {
-    		findRes.setText(input + " not found. Check spelling and search again.");
+    		findRes.setText(input + " is not a valid drink name. Check spelling and search again.");
     		tabDrink.setDisable(true);
     	}
     	
@@ -299,10 +307,8 @@ public class FXMLDocumentController implements Initializable {
 	    	        default: 						drinkImg.setImage(none);
 	        	} // END IMAGE SWITCH 
 	    	} // END WHILE
-	    	drinkRate.setText("★ : " + getRating(name));
+	    	drinkRate.setText("★ : " + df.format(getRating(name)));
     	} // END ELSE
-
-    	
     } // END DISPLAY METHOD
     
     public void drinkReview(ActionEvent drinkReview) throws SQLException {
@@ -312,11 +318,17 @@ public class FXMLDocumentController implements Initializable {
 			else if (drinkRate3.isSelected()) dbc.insert_query(3, name);
 			else if (drinkRate4.isSelected()) dbc.insert_query(4, name);
 			else 	dbc.insert_query(5, name);
+			
+			drinkLabelRate.setText("Thank you for rating!");
+			rate = true;
     	}
-
-    	rate = true;
-    }
+    } // END DRINKREVIEW METHOD
     
+    public void locReview(ActionEvent loc) {
+    	// TODO : MAKE THIS FUNCTIONAL?
+    } // END LOCREVIEW METHOD
+    
+    // TODO : GENERALIZE FUNCTION TO WORK WITH LOCATIONS
     public double getRating(String drink) throws SQLException {
     	ResultSet rs = null;
     	rs = dbc.query("select rating from review_drink where mixed_drink_id " + 
@@ -333,9 +345,20 @@ public class FXMLDocumentController implements Initializable {
     	if(total == 0) return 0;
     	else 		   return total/count;
     	
+    } // END GETRATING METHOD
+    
+    public void topDisplay() {
+    	/* TODO
+    	 * 1. result set, initialize shit probably lol
+    	 * 2. select TOP 3 mixed_drink_id from review_drink group by mixed_drink_id 
+    	 * 3. retrieve from mixed_drink the name of the drink, lmao...
+    	 * 4. result => set label1 = getstring(), set label2 = getstring() etc etc => .next
+    	 * 5. blah
+    	 */
     }
     
-    public void locReview(ActionEvent loc) {
+    public void random(ActionEvent random) {
     	
     }
+  
 }
