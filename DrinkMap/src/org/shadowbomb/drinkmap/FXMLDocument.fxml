@@ -254,22 +254,22 @@
                      <children>
                         <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="90.0" layoutY="109.0" preserveRatio="true">
                            <image>
-                              <Image url="@/ribbon.png" />
+                              <Image url = "@/ribbon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="450.0" layoutY="109.0" preserveRatio="true">
                            <image>
-                              <Image url="@/resources/ribbon.png" />
+                              <Image url = "@/ribbon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="90.0" layoutY="385.0" preserveRatio="true">
                            <image>
-                              <Image url="@/resources/ribbon.png" />
+                              <Image url = "@/ribbon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="62.0" fitWidth="300.0" layoutX="450.0" layoutY="385.0" preserveRatio="true">
                            <image>
-                              <Image url="@/resources/ribbon.png" />
+                              <Image url = "@/ribbon.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="aboutHeader" layoutX="50.0" layoutY="35.0" text="ABOUT" textFill="WHITE">
